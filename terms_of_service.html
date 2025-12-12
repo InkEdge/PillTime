@@ -1,1 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="description" content="PillTime服务条款-了解使用条款与条件">
+  <title>服务条款 - Terms of Service | PillTime</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      background-color: #f4f7fb;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #222;
+    }
+    .lang-selector {
+      text-align: center;
+      padding: 16px;
+      background-color: #fff;
+      border-bottom: 1.5px solid #e0e6f1;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(60,113,193,0.08);
+    }
+    .lang-selector label {
+      margin-right: 10px;
+      font-weight: 500;
+    }
+    .lang-selector select {
+      font-size: 16px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      font-weight: 500;
+      transition: border-color 0.3s;
+    }
+    .lang-selector select:focus {
+      border-color: #3c71c1;
+      outline: none;
+    }
+    .container {
+      max-width: 800px;
+      margin: 24px auto 40px;
+      padding: 28px 20px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 20px rgba(60,113,193,0.08);
+      border-radius: 16px;
+    }
+    h1 {
+      font-size: 26px;
+      margin: 0 0 8px 0;
+      color: #3c71c1;
+      line-height: 1.3;
+      text-align: left;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+    .update {
+      color: #888;
+      margin-bottom: 18px;
+    }
+    h2 {
+      margin-top: 26px;
+      font-size: 20px;
+      color: #3c71c1;
+      line-height: 1.4;
+    }
+    h3 {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #555;
+      line-height: 1.4;
+    }
+    p, li {
+      font-size: 16px;
+      color: #333;
+      line-height: 1.7;
+      margin-bottom: 14px;
+      white-space: pre-line;
+    }
+    ul, ol {
+      padding-left: 20px;
+      margin-top: 6px;
+    }
+    li { margin-bottom: 8px; }
+    strong { color: #3c71c1; }
+    a { color: #3c71c1; text-decoration: underline; word-break: break-all; }
 
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px 0;
+      background: #fafbfc;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    th, td {
+      border: 1px solid #e0e6f1;
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 15px;
+    }
+    th {
+      background-color: #f3f6fb;
+      color: #3c71c1;
+      font-weight: 600;
+    }
+
+    .lang-content { opacity: 0; transition: opacity 0.25s ease; }
+    .lang-content.active { opacity: 1; display: block; }
+
+    @media (max-width: 480px) {
+      .container {
+        margin: 0 auto;
+        border-radius: 0;
+        padding: 20px 16px;
+        box-shadow: none;
+      }
+      .lang-selector { padding: 12px; }
+      .lang-selector select { width: 100%; max-width: 280px; }
+      h1 { font-size: 22px; }
+      h2 { font-size: 19px; }
+      h3 { font-size: 17px; }
+      p, li, th, td { font-size: 15px; }
+      table { display: block; overflow-x: auto; white-space: nowrap; }
+    }
+    @media print {
+      .lang-selector { display: none; }
+      body { background-color: white; }
+      .container { box-shadow: none; margin: 0; padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="lang-selector">
+    <label for="lang-select">🌐 选择语言 / Language:</label>
+    <select id="lang-select" onchange="switchLang(this.value)" aria-label="Select language">
+      <option value="zh">简体中文</option>
+      <option value="zh-tw">繁體中文</option>
+      <option value="en">English</option>
+    </select>
+  </div>
+
+  <script>
+    // 语言切换
+    function switchLang(lang) {
+      document.querySelectorAll(".lang-content").forEach(el => {
+        el.classList.remove("active");
+        el.style.display = "none";
+      });
+      const target = document.getElementById(lang);
+      if (target) {
+        target.style.display = "block";
+        requestAnimationFrame(() => target.classList.add("active"));
+      }
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 
+                                     lang === 'zh-tw' ? 'zh-TW' : lang;
+      document.getElementById("lang-select").value = lang;
+    }
+    // 自动识别浏览器语言
+    window.onload = () => {
+      const langMap = { 
+        zh: 'zh', 
+        'zh-CN': 'zh',
+        'zh-TW': 'zh-tw',
+        'zh-HK': 'zh-tw',
+        en: 'en'
+      };
+      const browserLang = (navigator.language || 'en').toLowerCase();
+      const defaultLang = langMap[browserLang] || 'zh';
+      switchLang(defaultLang);
+    };
+  </script>
+
+  <div class="container">
+    <!-- 简体中文版本 -->
+    <div class="lang-content" id="zh" style="display:none" lang="zh-CN">
+      <h1>服务条款</h1>
+      <p class="update">最后更新：2025年12月12日</p>
+      <p>欢迎使用 PillTime 应用。使用本应用即表示您同意遵守以下条款和条件。</p>
+
+      <h2>1. 服务说明</h2>
+      <p>本应用为用药管理工具，提供以下功能：</p>
+      <ul>
+        <li><strong>用药提醒：</strong>设置定时提醒，支持每日、间隔、多时段等多种频率模式</li>
+        <li><strong>用药记录：</strong>记录每次服药情况，包括完成、漏服、推迟等状态</li>
+        <li><strong>药品扫描：</strong>使用相机扫描药品包装，智能识别药品名称（支持中文、英文、日文、韩文）</li>
+        <li><strong>药品管理：</strong>添加、编辑、删除药品信息，支持自定义剂量、单位、备注</li>
+        <li><strong>完成率统计：</strong>查看今日、本周、本月的服药完成率，以直观的环形进度图展示</li>
+        <li><strong>主屏幕Widget：</strong>在主屏幕快速查看今日用药提醒，一键完成用药记录</li>
+        <li><strong>数据导出：</strong>导出用药记录数据（JSON格式），便于备份和数据分析（订阅功能）</li>
+      </ul>
+
+      <h2>2. 订阅服务</h2>
+      <p>应用提供高级功能订阅服务：</p>
+      <ul>
+        <li><strong>订阅内容：</strong>包括无限制药品管理、数据导出等高级功能</li>
+        <li><strong>订阅方式：</strong>订阅服务通过App Store进行，遵循Apple的订阅条款和隐私政策</li>
+        <li><strong>订阅管理：</strong>您可以在应用内或App Store设置中管理或取消订阅</li>
+        <li><strong>免费体验期：</strong>部分订阅计划可能提供免费试用期，具体以App Store显示为准</li>
+      </ul>
+      
+      <h3>订阅选项：</h3>
+      <table>
+        <tr><th>订阅类型</th><th>说明</th><th>续订方式</th></tr>
+        <tr><td>年订阅</td><td>按年付费，享受所有高级功能</td><td>自动续订，除非您在订阅到期前至少24小时取消</td></tr>
+        <tr><td>终身会员</td><td>一次性购买，永久享受所有高级功能</td><td>无需续费</td></tr>
+      </table>
+      
+      <ul>
+        <li><strong>价格信息：</strong>订阅价格会在购买时明确显示，我们保留根据市场情况调整价格的权利</li>
+        <li><strong>退款政策：</strong>订阅服务遵循App Store的退款政策</li>
+      </ul>
+
+      <h2>3. 使用规范</h2>
+      <p>用户使用本应用时应遵守以下规范：</p>
+      <ul>
+        <li><strong>合法使用：</strong>用户应合理使用应用，不得用于违法或不当目的</li>
+        <li><strong>禁止行为：</strong>
+          <ul>
+            <li>不得利用应用进行任何违法活动</li>
+            <li>不得干扰或破坏应用的正常运行</li>
+            <li>不得恶意攻击或篡改应用数据</li>
+            <li>不得将应用用于商业用途（除非获得明确授权）</li>
+          </ul>
+        </li>
+        <li><strong>数据真实性：</strong>用户应确保输入的药品信息真实准确</li>
+        <li><strong>文明使用：</strong>用户在应用内应文明用语，不得发布不当内容</li>
+      </ul>
+      <p>违反上述条款可能导致您的使用权限被终止。</p>
+
+      <h2>4. 服务可用性</h2>
+      <ul>
+        <li><strong>服务稳定性：</strong>我们努力保持服务稳定，但不保证100%的可用性</li>
+        <li><strong>服务中断：</strong>由于技术维护、系统升级或不可抗力等原因，服务可能会暂时中断</li>
+        <li><strong>数据备份：</strong>建议用户定期备份重要数据，我们对因服务中断导致的数据丢失不承担责任</li>
+        <li><strong>兼容性：</strong>我们努力确保应用与最新版本的iOS系统兼容，但不保证与所有设备或系统版本的兼容性</li>
+      </ul>
+
+      <h2>5. 功能变更</h2>
+      <ul>
+        <li><strong>功能优化：</strong>我们可能会根据用户反馈和技术发展，对应用功能进行优化和更新</li>
+        <li><strong>功能调整：</strong>我们保留在必要时修改、暂停或终止部分功能的权利</li>
+        <li><strong>功能新增：</strong>我们可能会新增功能，新功能可能对订阅用户免费或需要额外付费</li>
+        <li><strong>功能移除：</strong>某些功能可能会被移除或替换，我们会尽可能提前通知用户</li>
+        <li><strong>版本更新：</strong>应用会定期更新，更新后的版本可能包含新功能或修复问题</li>
+      </ul>
+
+      <h2>6. 重要提示</h2>
+      <ul>
+        <li>本应用仅作为用药提醒工具，不提供医疗建议</li>
+        <li>本应用不能替代专业医疗咨询</li>
+        <li>您应该咨询医生或药剂师关于用药的任何问题</li>
+        <li>我们不对因使用本应用而产生的任何医疗后果负责</li>
+      </ul>
+      <p>请始终遵循医生或医疗专业人员的建议。</p>
+
+      <h2>7. 关于您的数据</h2>
+      <ul>
+        <li>您对输入到应用中的所有数据负责</li>
+        <li>我们建议您定期备份重要数据</li>
+        <li>我们不对因设备丢失、损坏或数据丢失造成的损失负责</li>
+        <li>删除应用将清除所有本地存储的数据</li>
+      </ul>
+      <p>请妥善保管您的设备和数据。</p>
+
+      <h2>8. 免责声明</h2>
+      <ul>
+        <li><strong>数据准确性：</strong>应用提供的数据分析仅供参考，不构成任何形式的建议或保证</li>
+        <li><strong>损失责任：</strong>因使用本应用产生的任何直接或间接损失，我们不承担责任</li>
+        <li><strong>第三方服务：</strong>应用可能使用第三方服务（如App Store），我们对第三方服务的行为不承担责任</li>
+        <li><strong>不可抗力：</strong>因不可抗力（如自然灾害、战争、网络攻击等）导致的服务中断，我们不承担责任</li>
+        <li><strong>用户行为：</strong>因用户违规使用应用导致的任何后果，由用户自行承担</li>
+      </ul>
+
+      <h2>9. 知识产权</h2>
+      <ul>
+        <li><strong>版权保护：</strong>应用的所有内容，包括但不限于文字、图片、图标、界面设计、代码等，均受版权保护</li>
+        <li><strong>使用限制：</strong>未经授权，用户不得复制、修改、分发或商业使用应用的内容</li>
+        <li><strong>用户内容：</strong>用户输入的药品数据归用户所有，但我们有权在应用内使用这些数据提供服务</li>
+        <li><strong>商标保护：</strong>应用名称、标识等商标受法律保护，未经授权不得使用</li>
+        <li><strong>技术保护：</strong>用户不得对应用进行逆向工程、反编译或其他技术破解行为</li>
+      </ul>
+      <p>我们保留所有未明确授予的权利。</p>
+
+      <h2>10. 协议更新</h2>
+      <ul>
+        <li><strong>更新通知：</strong>本协议可能更新，重大变更时我们会通过应用内通知或其他方式告知用户</li>
+        <li><strong>生效时间：</strong>更新后的协议在发布后立即生效</li>
+        <li><strong>继续使用：</strong>继续使用应用表示您同意更新后的协议条款</li>
+        <li><strong>不同意处理：</strong>如果您不同意更新后的协议，应停止使用应用并取消订阅</li>
+        <li><strong>历史版本：</strong>您可以在应用内查看当前版本的使用条款</li>
+      </ul>
+      <p>建议您定期查看本协议以了解最新条款。</p>
+
+      <h2>11. 争议解决</h2>
+      <ul>
+        <li><strong>协商解决：</strong>如有争议，优先通过友好协商解决</li>
+        <li><strong>适用法律：</strong>本协议适用中华人民共和国法律</li>
+        <li><strong>管辖法院：</strong>如无法协商解决，争议应提交至应用开发者所在地有管辖权的人民法院解决</li>
+        <li><strong>投诉渠道：</strong>您可以通过应用内反馈功能或邮箱 <a href="mailto:chenyisy@gmail.com">chenyisy@gmail.com</a> 联系我们</li>
+        <li><strong>响应时间：</strong>我们会在3个工作日内回复您的咨询或投诉</li>
+      </ul>
+
+      <h2>12. 联系我们</h2>
+      <p>如果您对本使用条款有任何疑问、建议或投诉，请通过以下方式联系我们：</p>
+      <ul>
+        <li><strong>邮箱：</strong><a href="mailto:chenyisy@gmail.com">chenyisy@gmail.com</a></li>
+        <li><strong>应用内反馈：</strong>通过应用内的反馈功能</li>
+        <li><strong>响应时间：</strong>我们会在3个工作日内回复您的咨询</li>
+        <li><strong>投诉处理：</strong>我们会认真处理您的投诉和建议</li>
+        <li><strong>持续改进：</strong>您的反馈帮助我们持续改进服务质量</li>
+      </ul>
+
+      <h2>重要声明</h2>
+      <p>使用本应用即表示您同意本使用条款的所有内容。如果您不同意本条款的任何内容，请停止使用本应用。</p>
+      <p>本使用条款可能更新，请定期查看。继续使用应用表示您同意更新后的条款。</p>
+
+      <p class="update">最后更新时间：2025年12月12日</p>
+
+      <h2>法律管辖</h2>
+      <p>本用户协议受中华人民共和国法律管辖。如发生争议，双方应友好协商解决；协商不成的，任何一方均可向有管辖权的人民法院提起诉讼。</p>
+      <p>本协议的解释权归 WhiteRabbitLab 所有。</p>
+    </div>
+
+    <!-- 繁體中文版本 -->
+    <div class="lang-content" id="zh-tw" style="display:none" lang="zh-TW">
+      <h1>服務條款</h1>
+      <p class="update">最後更新：2025年12月12日</p>
+      <p>歡迎使用 PillTime 應用。使用本應用即表示您同意遵守以下條款和條件。</p>
+
+      <h2>1. 服務說明</h2>
+      <p>本應用為用藥管理工具，提供以下功能：</p>
+      <ul>
+        <li><strong>用藥提醒：</strong>設置定時提醒，支援每日、間隔、多時段等多種頻率模式</li>
+        <li><strong>用藥記錄：</strong>記錄每次服藥情況，包括完成、漏服、推遲等狀態</li>
+        <li><strong>藥品掃描：</strong>使用相機掃描藥品包裝，智能識別藥品名稱（支援中文、英文、日文、韓文）</li>
+        <li><strong>藥品管理：</strong>新增、編輯、刪除藥品資訊，支援自訂劑量、單位、備註</li>
+        <li><strong>完成率統計：</strong>查看今日、本週、本月的服藥完成率，以直觀的環形進度圖展示</li>
+        <li><strong>主螢幕Widget：</strong>在主螢幕快速查看今日用藥提醒，一鍵完成用藥記錄</li>
+        <li><strong>數據匯出：</strong>匯出用藥記錄數據（JSON格式），便於備份和數據分析（訂閱功能）</li>
+      </ul>
+
+      <h2>2. 訂閱服務</h2>
+      <p>應用提供高級功能訂閱服務：</p>
+      <ul>
+        <li><strong>訂閱內容：</strong>包括無限制藥品管理、數據匯出等高級功能</li>
+        <li><strong>訂閱方式：</strong>訂閱服務通過App Store進行，遵循Apple的訂閱條款和隱私政策</li>
+        <li><strong>訂閱管理：</strong>您可以在應用內或App Store設置中管理或取消訂閱</li>
+        <li><strong>免費體驗期：</strong>部分訂閱計劃可能提供免費試用期，具體以App Store顯示為準</li>
+      </ul>
+      
+      <h3>訂閱選項：</h3>
+      <table>
+        <tr><th>訂閱類型</th><th>說明</th><th>續訂方式</th></tr>
+        <tr><td>年訂閱</td><td>按年付費，享受所有高級功能</td><td>自動續訂，除非您在訂閱到期前至少24小時取消</td></tr>
+        <tr><td>終身會員</td><td>一次性購買，永久享受所有高級功能</td><td>無需續費</td></tr>
+      </table>
+      
+      <ul>
+        <li><strong>價格資訊：</strong>訂閱價格會在購買時明確顯示，我們保留根據市場情況調整價格的權利</li>
+        <li><strong>退款政策：</strong>訂閱服務遵循App Store的退款政策</li>
+      </ul>
+
+      <h2>3. 使用規範</h2>
+      <p>用戶使用本應用時應遵守以下規範：</p>
+      <ul>
+        <li><strong>合法使用：</strong>用戶應合理使用應用，不得用於違法或不當目的</li>
+        <li><strong>禁止行為：</strong>
+          <ul>
+            <li>不得利用應用進行任何違法活動</li>
+            <li>不得干擾或破壞應用的正常運行</li>
+            <li>不得惡意攻擊或篡改應用數據</li>
+            <li>不得將應用用於商業用途（除非獲得明確授權）</li>
+          </ul>
+        </li>
+        <li><strong>數據真實性：</strong>用戶應確保輸入的藥品資訊真實準確</li>
+        <li><strong>文明使用：</strong>用戶在應用內應文明用語，不得發布不當內容</li>
+      </ul>
+      <p>違反上述條款可能導致您的使用權限被終止。</p>
+
+      <h2>4. 服務可用性</h2>
+      <ul>
+        <li><strong>服務穩定性：</strong>我們努力保持服務穩定，但不保證100%的可用性</li>
+        <li><strong>服務中斷：</strong>由於技術維護、系統升級或不可抗力等原因，服務可能會暫時中斷</li>
+        <li><strong>數據備份：</strong>建議用戶定期備份重要數據，我們對因服務中斷導致的數據丟失不承擔責任</li>
+        <li><strong>兼容性：</strong>我們努力確保應用與最新版本的iOS系統兼容，但不保證與所有設備或系統版本的兼容性</li>
+      </ul>
+
+      <h2>5. 功能變更</h2>
+      <ul>
+        <li><strong>功能優化：</strong>我們可能會根據用戶反饋和技術發展，對應用功能進行優化和更新</li>
+        <li><strong>功能調整：</strong>我們保留在必要時修改、暫停或終止部分功能的權利</li>
+        <li><strong>功能新增：</strong>我們可能會新增功能，新功能可能對訂閱用戶免費或需要額外付費</li>
+        <li><strong>功能移除：</strong>某些功能可能會被移除或替換，我們會盡可能提前通知用戶</li>
+        <li><strong>版本更新：</strong>應用會定期更新，更新後的版本可能包含新功能或修復問題</li>
+      </ul>
+
+      <h2>6. 重要提示</h2>
+      <ul>
+        <li>本應用僅作為用藥提醒工具，不提供醫療建議</li>
+        <li>本應用不能替代專業醫療諮詢</li>
+        <li>您應該諮詢醫生或藥劑師關於用藥的任何問題</li>
+        <li>我們不對因使用本應用而產生的任何醫療後果負責</li>
+      </ul>
+      <p>請始終遵循醫生或醫療專業人員的建議。</p>
+
+      <h2>7. 關於您的資料</h2>
+      <ul>
+        <li>您對輸入到應用中的所有資料負責</li>
+        <li>我們建議您定期備份重要資料</li>
+        <li>我們不對因設備丟失、損壞或資料丟失造成的損失負責</li>
+        <li>刪除應用將清除所有本地存儲的資料</li>
+      </ul>
+      <p>請妥善保管您的設備和資料。</p>
+
+      <h2>8. 免責聲明</h2>
+      <ul>
+        <li><strong>數據準確性：</strong>應用提供的數據分析僅供參考，不構成任何形式的建議或保證</li>
+        <li><strong>損失責任：</strong>因使用本應用產生的任何直接或間接損失，我們不承擔責任</li>
+        <li><strong>第三方服務：</strong>應用可能使用第三方服務（如App Store），我們對第三方服務的行為不承擔責任</li>
+        <li><strong>不可抗力：</strong>因不可抗力（如自然災害、戰爭、網絡攻擊等）導致的服務中斷，我們不承擔責任</li>
+        <li><strong>用戶行為：</strong>因用戶違規使用應用導致的任何後果，由用戶自行承擔</li>
+      </ul>
+
+      <h2>9. 知識產權</h2>
+      <ul>
+        <li><strong>版權保護：</strong>應用的所有內容，包括但不限於文字、圖片、圖標、界面設計、代碼等，均受版權保護</li>
+        <li><strong>使用限制：</strong>未經授權，用戶不得複製、修改、分發或商業使用應用的內容</li>
+        <li><strong>用戶內容：</strong>用戶輸入的藥品數據歸用戶所有，但我們有權在應用內使用這些數據提供服務</li>
+        <li><strong>商標保護：</strong>應用名稱、標識等商標受法律保護，未經授權不得使用</li>
+        <li><strong>技術保護：</strong>用戶不得對應用進行逆向工程、反編譯或其他技術破解行為</li>
+      </ul>
+      <p>我們保留所有未明確授予的權利。</p>
+
+      <h2>10. 協議更新</h2>
+      <ul>
+        <li><strong>更新通知：</strong>本協議可能更新，重大變更時我們會通過應用內通知或其他方式告知用戶</li>
+        <li><strong>生效時間：</strong>更新後的協議在發布後立即生效</li>
+        <li><strong>繼續使用：</strong>繼續使用應用表示您同意更新後的協議條款</li>
+        <li><strong>不同意處理：</strong>如果您不同意更新後的協議，應停止使用應用並取消訂閱</li>
+        <li><strong>歷史版本：</strong>您可以在應用內查看當前版本的使用條款</li>
+      </ul>
+      <p>建議您定期查看本協議以了解最新條款。</p>
+
+      <h2>11. 爭議解決</h2>
+      <ul>
+        <li><strong>協商解決：</strong>如有爭議，優先通過友好協商解決</li>
+        <li><strong>適用法律：</strong>本協議適用中華人民共和國法律</li>
+        <li><strong>管轄法院：</strong>如無法協商解決，爭議應提交至應用開發者所在地有管轄權的人民法院解決</li>
+        <li><strong>投訴渠道：</strong>您可以通過應用內反饋功能或郵箱 <a href="mailto:chenyisy@gmail.com">chenyisy@gmail.com</a> 聯繫我們</li>
+        <li><strong>響應時間：</strong>我們會在3個工作日內回復您的諮詢或投訴</li>
+      </ul>
+
+      <h2>12. 聯繫我們</h2>
+      <p>如果您對本使用條款有任何疑問、建議或投訴，請通過以下方式聯繫我們：</p>
+      <ul>
+        <li><strong>郵箱：</strong><a href="mailto:chenyisy@gmail.com">chenyisy@gmail.com</a></li>
+        <li><strong>應用內反饋：</strong>通過應用內的反饋功能</li>
+        <li><strong>響應時間：</strong>我們會在3個工作日內回復您的諮詢</li>
+        <li><strong>投訴處理：</strong>我們會認真處理您的投訴和建議</li>
+        <li><strong>持續改進：</strong>您的反饋幫助我們持續改進服務質量</li>
+      </ul>
+
+      <h2>重要聲明</h2>
+      <p>使用本應用即表示您同意本使用條款的所有內容。如果您不同意本條款的任何內容，請停止使用本應用。</p>
+      <p>本使用條款可能更新，請定期查看。繼續使用應用表示您同意更新後的條款。</p>
+
+      <p class="update">最後更新時間：2025年12月12日</p>
+
+      <h2>法律管轄</h2>
+      <p>本用戶協議受中華人民共和國法律管轄。如發生爭議，雙方應友好協商解決；協商不成的，任何一方均可向有管轄權的人民法院提起訴訟。</p>
+      <p>本協議的解釋權歸 WhiteRabbitLab 所有。</p>
+    </div>
+
+    <!-- 英文版本 -->
+    <div class="lang-content" id="en" style="display:none" lang="en">
+      <h1>Terms of Service</h1>
+      <p class="update">Last Updated: December 12, 2025</p>
+      <p>Welcome to the PillTime application. By using this application, you agree to comply with the following terms and conditions.</p>
+
+      <h2>1. Service Description</h2>
+      <p>This application is a medication management tool that provides the following features:</p>
+      <ul>
+        <li><strong>Medication Reminders:</strong> Set scheduled reminders with multiple frequency modes including daily, interval, and multi-time slots</li>
+        <li><strong>Medication Tracking:</strong> Record each medication dose, including completed, missed, and postponed statuses</li>
+        <li><strong>Medication Scanning:</strong> Use your camera to scan medication packaging and intelligently recognize medication names (supports Chinese, English, Japanese, Korean)</li>
+        <li><strong>Medication Management:</strong> Add, edit, and delete medication information with support for custom dosage, units, and notes</li>
+        <li><strong>Completion Rate Statistics:</strong> View today's, this week's, and this month's medication completion rates displayed in an intuitive circular progress chart</li>
+        <li><strong>Home Screen Widget:</strong> Quickly view today's medication reminders on your home screen and complete medication records with one tap</li>
+        <li><strong>Data Export:</strong> Export medication record data (JSON format) for backup and data analysis (Premium feature)</li>
+      </ul>
+
+      <h2>2. Subscription Service</h2>
+      <p>The application provides premium feature subscription services:</p>
+      <ul>
+        <li><strong>Subscription Content:</strong> Includes unlimited medication management, data export, and other premium features</li>
+        <li><strong>Subscription Method:</strong> Subscription services are processed through the App Store, following Apple's subscription terms and privacy policy</li>
+        <li><strong>Subscription Management:</strong> You can manage or cancel your subscription within the application or in App Store settings</li>
+        <li><strong>Free Trial Period:</strong> Some subscription plans may offer a free trial period, as shown in the App Store</li>
+      </ul>
+      
+      <h3>Subscription Options:</h3>
+      <table>
+        <tr><th>Subscription Type</th><th>Description</th><th>Renewal Method</th></tr>
+        <tr><td>Annual Subscription</td><td>Pay annually, enjoy all premium features</td><td>Auto-renews unless canceled at least 24 hours before expiration</td></tr>
+        <tr><td>Lifetime Membership</td><td>One-time purchase for permanent access to all premium features</td><td>No renewal required</td></tr>
+      </table>
+      
+      <ul>
+        <li><strong>Price Information:</strong> Subscription prices will be clearly displayed at the time of purchase. We reserve the right to adjust prices based on market conditions</li>
+        <li><strong>Refund Policy:</strong> Subscription services follow the App Store refund policy</li>
+      </ul>
+
+      <h2>3. Usage Guidelines</h2>
+      <p>Users should comply with the following guidelines when using this application:</p>
+      <ul>
+        <li><strong>Legal Use:</strong> Users should use the application reasonably and not for illegal or improper purposes</li>
+        <li><strong>Prohibited Activities:</strong>
+          <ul>
+            <li>Do not use the application for any illegal activities</li>
+            <li>Do not interfere with or disrupt the normal operation of the application</li>
+            <li>Do not maliciously attack or tamper with application data</li>
+            <li>Do not use the application for commercial purposes (unless explicitly authorized)</li>
+          </ul>
+        </li>
+        <li><strong>Data Accuracy:</strong> Users should ensure that the medication information entered is accurate and truthful</li>
+        <li><strong>Civilized Use:</strong> Users should use civilized language within the application and not post inappropriate content</li>
+      </ul>
+      <p>Violation of the above terms may result in termination of your usage rights.</p>
+
+      <h2>4. Service Availability</h2>
+      <ul>
+        <li><strong>Service Stability:</strong> We strive to maintain service stability but do not guarantee 100% availability</li>
+        <li><strong>Service Interruptions:</strong> Services may be temporarily interrupted due to technical maintenance, system upgrades, or force majeure</li>
+        <li><strong>Data Backup:</strong> We recommend that users regularly backup important data. We are not responsible for data loss caused by service interruptions</li>
+        <li><strong>Compatibility:</strong> We strive to ensure the application is compatible with the latest iOS system versions but do not guarantee compatibility with all devices or system versions</li>
+      </ul>
+
+      <h2>5. Feature Changes</h2>
+      <ul>
+        <li><strong>Feature Optimization:</strong> We may optimize and update application features based on user feedback and technological developments</li>
+        <li><strong>Feature Adjustments:</strong> We reserve the right to modify, suspend, or terminate certain features when necessary</li>
+        <li><strong>New Features:</strong> We may add new features, which may be free for subscribers or require additional payment</li>
+        <li><strong>Feature Removal:</strong> Certain features may be removed or replaced, and we will notify users in advance whenever possible</li>
+        <li><strong>Version Updates:</strong> The application will be updated regularly, and updated versions may include new features or bug fixes</li>
+      </ul>
+
+      <h2>6. Important Notice</h2>
+      <ul>
+        <li>This application serves only as a medication reminder tool and does not provide medical advice</li>
+        <li>This application cannot replace professional medical consultation</li>
+        <li>You should consult a doctor or pharmacist regarding any medication questions</li>
+        <li>We are not responsible for any medical consequences arising from the use of this application</li>
+      </ul>
+      <p>Please always follow the advice of doctors or medical professionals.</p>
+
+      <h2>7. Regarding Your Data</h2>
+      <ul>
+        <li>You are responsible for all data entered into the application</li>
+        <li>We recommend that you regularly backup important data</li>
+        <li>We are not responsible for losses caused by device loss, damage, or data loss</li>
+        <li>Deleting the application will clear all locally stored data</li>
+      </ul>
+      <p>Please keep your device and data safe.</p>
+
+      <h2>8. Disclaimer</h2>
+      <ul>
+        <li><strong>Data Accuracy:</strong> The data analysis provided by the application is for reference only and does not constitute any form of advice or guarantee</li>
+        <li><strong>Liability for Losses:</strong> We are not responsible for any direct or indirect losses arising from the use of this application</li>
+        <li><strong>Third-Party Services:</strong> The application may use third-party services (such as the App Store), and we are not responsible for the actions of third-party services</li>
+        <li><strong>Force Majeure:</strong> We are not responsible for service interruptions caused by force majeure (such as natural disasters, wars, cyber attacks, etc.)</li>
+        <li><strong>User Behavior:</strong> Users are responsible for any consequences arising from improper use of the application</li>
+      </ul>
+
+      <h2>9. Intellectual Property</h2>
+      <ul>
+        <li><strong>Copyright Protection:</strong> All content of the application, including but not limited to text, images, icons, interface design, code, etc., is protected by copyright</li>
+        <li><strong>Usage Restrictions:</strong> Without authorization, users may not copy, modify, distribute, or commercially use the application's content</li>
+        <li><strong>User Content:</strong> Medication data entered by users belongs to the users, but we have the right to use this data within the application to provide services</li>
+        <li><strong>Trademark Protection:</strong> Application names, logos, and other trademarks are protected by law and may not be used without authorization</li>
+        <li><strong>Technical Protection:</strong> Users may not reverse engineer, decompile, or otherwise technically crack the application</li>
+      </ul>
+      <p>We reserve all rights not expressly granted.</p>
+
+      <h2>10. Agreement Updates</h2>
+      <ul>
+        <li><strong>Update Notifications:</strong> This agreement may be updated, and we will notify users of significant changes through in-app notifications or other means</li>
+        <li><strong>Effective Time:</strong> Updated agreements take effect immediately upon publication</li>
+        <li><strong>Continued Use:</strong> Continued use of the application indicates your acceptance of the updated agreement terms</li>
+        <li><strong>Disagreement Handling:</strong> If you do not agree to the updated agreement, you should stop using the application and cancel your subscription</li>
+        <li><strong>Historical Versions:</strong> You can view the current version of the terms of service within the application</li>
+      </ul>
+      <p>We recommend that you regularly review this agreement to stay informed of the latest terms.</p>
+
+      <h2>11. Dispute Resolution</h2>
+      <ul>
+        <li><strong>Negotiation:</strong> In case of disputes, priority should be given to friendly negotiation</li>
+        <li><strong>Applicable Law:</strong> This agreement is governed by the laws of the People's Republic of China</li>
+        <li><strong>Jurisdiction:</strong> If negotiation fails, disputes shall be submitted to a people's court with jurisdiction in the developer's location</li>
+        <li><strong>Complaint Channels:</strong> You can contact us through the in-app feedback function or email <a href="mailto:chenyisy@gmail.com">chenyisy@gmail.com</a></li>
+        <li><strong>Response Time:</strong> We will respond to your inquiries or complaints within 3 business days</li>
+      </ul>
+
+      <h2>12. Contact Us</h2>
+      <p>If you have any questions, suggestions, or complaints about these terms of service, please contact us through the following methods:</p>
+      <ul>
+        <li><strong>Email:</strong> <a href="mailto:chenyisy@gmail.com">chenyisy@gmail.com</a></li>
+        <li><strong>In-App Feedback:</strong> Through the in-app feedback function</li>
+        <li><strong>Response Time:</strong> We will respond to your inquiries within 3 business days</li>
+        <li><strong>Complaint Handling:</strong> We will carefully handle your complaints and suggestions</li>
+        <li><strong>Continuous Improvement:</strong> Your feedback helps us continuously improve service quality</li>
+      </ul>
+
+      <h2>Important Notice</h2>
+      <p>By using this application, you agree to all the contents of these terms of service. If you do not agree to any part of these terms, please stop using this application.</p>
+      <p>These terms of service may be updated. Please review them regularly. Continued use of the application indicates your acceptance of the updated terms.</p>
+
+      <p class="update">Last Updated: December 12, 2025</p>
+
+      <h2>Legal Jurisdiction</h2>
+      <p>This user agreement is governed by the laws of the People's Republic of China. In case of disputes, both parties shall resolve them through friendly consultation; if consultation fails, either party may file a lawsuit with a people's court with jurisdiction.</p>
+      <p>The right to interpret this agreement belongs to WhiteRabbitLab.</p>
+    </div>
+  </div>
+</body>
+</html>
