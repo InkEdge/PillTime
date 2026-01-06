@@ -61,12 +61,21 @@
     .update {
       color: #888;
       margin-bottom: 18px;
+      font-size: 15px;
     }
     h2 {
       margin-top: 26px;
       font-size: 20px;
       color: #3c71c1;
       line-height: 1.4;
+      border-bottom: 1px solid #eaeff5;
+      padding-bottom: 6px;
+    }
+    h3 {
+      font-size: 17px;
+      color: #4a5c7a;
+      margin-top: 20px;
+      margin-bottom: 10px;
     }
     p, li {
       font-size: 16px;
@@ -81,7 +90,15 @@
     }
     li { margin-bottom: 8px; }
     strong { color: #3c71c1; }
-    a { color: #3c71c1; text-decoration: underline; word-break: break-all; }
+    a { 
+      color: #3c71c1; 
+      text-decoration: underline; 
+      word-break: break-all;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #2a5699;
+    }
 
     table {
       width: 100%;
@@ -103,9 +120,32 @@
       color: #3c71c1;
       font-weight: 600;
     }
+    tr:nth-child(even) {
+      background-color: #f9fafc;
+    }
 
-    .lang-content { opacity: 0; transition: opacity 0.25s ease; }
-    .lang-content.active { opacity: 1; display: block; }
+    .lang-content { 
+      opacity: 0; 
+      transition: opacity 0.25s ease;
+      display: none;
+    }
+    .lang-content.active { 
+      opacity: 1; 
+      display: block; 
+    }
+
+    .highlight-box {
+      background-color: #f0f7ff;
+      border-left: 4px solid #3c71c1;
+      padding: 16px;
+      margin: 20px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .company-name {
+      color: #3c71c1;
+      font-weight: 600;
+    }
 
     @media (max-width: 480px) {
       .container {
@@ -118,13 +158,16 @@
       .lang-selector select { width: 100%; max-width: 280px; }
       h1 { font-size: 22px; }
       h2 { font-size: 19px; }
+      h3 { font-size: 16px; }
       p, li, th, td { font-size: 15px; }
-      table { display: block; overflow-x: auto; white-space: nowrap; }
+      table { display: block; overflow-x: auto; }
+      .highlight-box { padding: 12px; }
     }
     @media print {
       .lang-selector { display: none; }
       body { background-color: white; }
       .container { box-shadow: none; margin: 0; padding: 20px; }
+      a { color: #000; }
     }
   </style>
 </head>
@@ -138,52 +181,27 @@
     </select>
   </div>
 
-  <script>
-    // 语言切换
-    function switchLang(lang) {
-      document.querySelectorAll(".lang-content").forEach(el => {
-        el.classList.remove("active");
-        el.style.display = "none";
-      });
-      const target = document.getElementById(lang);
-      if (target) {
-        target.style.display = "block";
-        requestAnimationFrame(() => target.classList.add("active"));
-      }
-      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 
-                                     lang === 'zh-tw' ? 'zh-TW' : lang;
-      document.getElementById("lang-select").value = lang;
-    }
-    // 自动识别浏览器语言
-    window.onload = () => {
-      const langMap = { 
-        zh: 'zh', 
-        'zh-CN': 'zh',
-        'zh-TW': 'zh-tw',
-        'zh-HK': 'zh-tw',
-        en: 'en'
-      };
-      const browserLang = (navigator.language || 'en').toLowerCase();
-      const defaultLang = langMap[browserLang] || 'zh';
-      switchLang(defaultLang);
-    };
-  </script>
-
   <div class="container">
     <!-- 简体中文版本 -->
     <div class="lang-content" id="zh" style="display:none" lang="zh-CN">
-      <h1>隐私政策</h1>
-      <p class="update">最后更新：2025年12月24日</p>
-      <p>我们非常重视您的隐私。PillTime 是一款本地应用，我们收集的信息包括：</p>
+      <h1>PillTime 隐私政策</h1>
+      <p class="update">最后更新时间：2025年12月24日</p>
+      
+      <div class="highlight-box">
+        <p><strong>重要提示：</strong>我们非常重视您的隐私。PillTime 是一款本地应用，所有数据均存储在您的设备本地，我们不会将您的个人信息上传到服务器。</p>
+      </div>
+
+      <h2>1. 我们收集的信息</h2>
+      <p>PillTime 收集的信息包括：</p>
       <ul>
-        <li>您输入的药品信息（药品名称、剂量、用药时间等）</li>
-        <li>用药记录和提醒设置</li>
-        <li>应用使用偏好设置（如老年模式、提醒次数等）</li>
-        <li>药品照片（可选）：用于识别药品名称和记录药品外观</li>
+        <li><strong>药品信息：</strong>您输入的药品名称、剂量、用药时间等</li>
+        <li><strong>用药记录：</strong>您的用药历史和提醒设置</li>
+        <li><strong>应用设置：</strong>使用偏好设置（如老年模式、提醒次数等）</li>
+        <li><strong>药品照片（可选）：</strong>用于识别药品名称和记录药品外观</li>
       </ul>
       <p>所有数据均存储在您的设备本地，我们不会将您的个人信息上传到服务器。</p>
 
-      <h2>订阅信息</h2>
+      <h2>2. 订阅信息</h2>
       <ul>
         <li>订阅功能通过 Apple App Store 处理</li>
         <li>我们不会收集、存储或处理您的支付信息</li>
@@ -191,7 +209,7 @@
         <li>订阅信息仅用于解锁应用功能</li>
       </ul>
 
-      <h2>图片信息</h2>
+      <h2>3. 图片信息</h2>
       <ul>
         <li>扫描或拍摄的药品照片仅用于识别药品名称</li>
         <li>图片存储在应用沙盒中，不会保存到系统相册</li>
@@ -199,25 +217,25 @@
         <li>您可以随时删除药品照片</li>
       </ul>
 
-      <h2>数据安全存储</h2>
+      <h2>4. 数据安全存储</h2>
       <p>您的所有数据都安全地存储在您的设备上：</p>
       <ul>
-        <li>使用 AES-GCM 加密算法保护敏感数据</li>
-        <li>加密密钥存储在 iOS Keychain 中，使用设备级安全保护</li>
+        <li>所有用户数据（药品信息、用药记录、提醒设置、应用偏好等）均使用 <strong>AES-GCM 加密算法</strong>保护</li>
+        <li>加密密钥存储在 <strong>iOS Keychain</strong> 中，使用设备级安全保护</li>
         <li>每次加密使用唯一的随机数（Nonce），确保数据安全</li>
         <li>数据包含版本号和校验和，确保数据完整性</li>
       </ul>
 
-      <h2>iCloud 备份</h2>
+      <h2>5. iCloud 备份</h2>
       <ul>
-        <li>所有用户数据已配置排除 iCloud 备份</li>
+        <li>通过 Info.plist 配置，所有用户数据已排除 iCloud 备份</li>
         <li>您的用药数据不会自动备份到 iCloud</li>
         <li>这确保您的隐私数据不会被意外同步到其他设备</li>
         <li>如果您需要备份数据，请使用应用内的导出功能</li>
       </ul>
-      <p>我们不会访问、收集或传输您的任何个人健康信息。</p>
+      <p><strong>我们不会访问、收集或传输您的任何个人健康信息。</strong></p>
 
-      <h2>数据使用目的</h2>
+      <h2>6. 数据使用目的</h2>
       <p>PillTime 使用您的数据仅用于：</p>
       <ul>
         <li>提供用药提醒功能</li>
@@ -225,35 +243,55 @@
         <li>改善应用体验</li>
       </ul>
 
-      <h2>数据分析</h2>
+      <h2>7. 数据分析</h2>
       <ul>
         <li>我们记录应用使用情况以改善用户体验</li>
         <li>当前所有分析数据仅存储在您的设备本地</li>
         <li>我们不会将分析数据上传到服务器</li>
-        <li>如果未来集成第三方分析服务，我们将更新此隐私政策并通知您</li>
+        <li>如果未来集成第三方分析服务（如 Firebase Analytics），我们将在更新应用时通过应用内通知或更新日志告知您，并更新此隐私政策</li>
       </ul>
       <p>我们不会将您的数据用于任何其他目的，也不会与第三方分享。</p>
 
-      <h2>安全措施</h2>
+      <h2>8. 安全措施</h2>
       <p>我们采取以下措施保护您的数据安全：</p>
       <ul>
         <li>本地加密存储（AES-GCM 算法）</li>
         <li>加密密钥存储在 iOS Keychain 中</li>
         <li>不进行网络传输</li>
         <li>不收集用户身份信息</li>
-        <li>敏感数据排除 iCloud 备份</li>
+        <li>所有用户数据排除 iCloud 备份</li>
       </ul>
 
-      <h2>权限使用</h2>
+      <h2>9. 权限使用</h2>
       <table>
-        <tr><th>权限</th><th>用途</th><th>是否必须</th></tr>
-        <tr><td>通知权限</td><td>用于发送用药提醒，通知内容仅包含您输入的药品信息</td><td>是</td></tr>
-        <tr><td>相机权限</td><td>用于扫描药品标签识别药品名称，以及拍摄药品照片。扫描和拍摄的图片仅存储在应用内，不会保存到系统相册</td><td>否</td></tr>
-        <tr><td>相册权限</td><td>用于从相册选择药品照片。我们只会读取您主动选择的照片，不会访问其他照片</td><td>否</td></tr>
+        <thead>
+          <tr>
+            <th>权限</th>
+            <th>用途</th>
+            <th>是否必须</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>通知权限</strong></td>
+            <td>用于发送用药提醒，通知内容仅包含您输入的药品信息</td>
+            <td>是</td>
+          </tr>
+          <tr>
+            <td><strong>相机权限</strong></td>
+            <td>用于扫描药品标签识别药品名称，以及拍摄药品照片。扫描和拍摄的图片仅存储在应用内，不会保存到系统相册</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><strong>相册权限</strong></td>
+            <td>读取权限：用于从相册选择药品照片。我们只会读取您主动选择的照片，不会访问其他照片</td>
+            <td>否</td>
+          </tr>
+        </tbody>
       </table>
       <p>您的隐私和安全是我们的首要考虑。</p>
 
-      <h2>跨应用和跨网站追踪</h2>
+      <h2>10. 跨应用和跨网站追踪</h2>
       <ul>
         <li>本应用不会进行跨应用或跨网站追踪</li>
         <li>我们不会使用 Apple 的 App Tracking Transparency (ATT) 框架请求追踪权限</li>
@@ -261,7 +299,7 @@
         <li>应用内不显示广告，也不会收集数据用于广告投放</li>
       </ul>
 
-      <h2>广告服务</h2>
+      <h2>11. 广告服务</h2>
       <ul>
         <li>本应用不包含任何广告</li>
         <li>我们不会使用任何第三方广告服务（如 AdMob、Google Mobile Ads 等）</li>
@@ -269,21 +307,21 @@
         <li>应用内不会显示推广内容或第三方广告</li>
       </ul>
 
-      <h2>第三方服务</h2>
+      <h2>12. 第三方服务</h2>
       <h3>Apple StoreKit：</h3>
       <ul>
         <li>我们使用 Apple StoreKit 处理应用内购买和订阅</li>
         <li>订阅相关的交易信息由 Apple 处理</li>
         <li>我们不会访问您的 Apple ID 或支付信息</li>
-        <li>有关 Apple 如何处理您的数据，请参阅 <a href="https://www.apple.com/privacy/" target="_blank">Apple 隐私政策</a></li>
+        <li>有关 Apple 如何处理您的数据，请参阅 <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">Apple 隐私政策</a></li>
       </ul>
       <h3>其他第三方服务：</h3>
       <ul>
         <li>当前未使用其他第三方服务</li>
-        <li>如果未来集成第三方服务，我们将更新此隐私政策并通知您</li>
+        <li>如果未来集成第三方服务，我们将在更新应用时通过应用内通知或更新日志告知您，并更新此隐私政策</li>
       </ul>
 
-      <h2>您的权利</h2>
+      <h2>13. 您的权利</h2>
       <p>您对自己的数据拥有完全控制权：</p>
       <ul>
         <li>随时可以删除应用内的所有数据</li>
@@ -293,14 +331,14 @@
         <li>可以取消订阅（通过 App Store 设置）</li>
       </ul>
 
-      <h2>数据删除</h2>
+      <h2>14. 数据删除</h2>
       <ul>
-        <li>删除应用将清除所有本地存储的数据，包括：药品信息、用药记录、提醒设置、应用偏好设置</li>
+        <li>删除应用将清除所有本地存储的数据，包括：药品信息、用药记录、提醒设置、应用偏好设置、加密存储的所有数据</li>
         <li>删除的数据无法恢复，请谨慎操作</li>
         <li>订阅信息由 Apple 管理，删除应用不会影响您的订阅状态</li>
       </ul>
 
-      <h2>联系我们</h2>
+      <h2>15. 联系我们</h2>
       <p>如果您对隐私政策有任何疑问，请通过以下方式联系我们：</p>
       <ul>
         <li>应用内反馈功能</li>
@@ -308,27 +346,31 @@
       </ul>
       <p>我们会及时回复您的咨询。</p>
 
-      <h2>法律管辖</h2>
+      <h2>16. 法律管辖</h2>
       <p>本隐私政策受中华人民共和国法律管辖。如发生争议，双方应友好协商解决；协商不成的，任何一方均可向有管辖权的人民法院提起诉讼。</p>
-      <p>本政策的解释权归 WhiteRabbitLab 所有。</p>
-      
-      <p class="update">最后更新时间：2025年12月24日</p>
+      <p>本政策的解释权归 <span class="company-name">WhiteRabbitLab</span> 所有。</p>
     </div>
 
     <!-- 繁體中文版本 -->
     <div class="lang-content" id="zh-tw" style="display:none" lang="zh-TW">
-      <h1>隱私政策</h1>
-      <p class="update">最後更新：2025年12月24日</p>
-      <p>我們非常重視您的隱私。PillTime 是一款本地應用，我們收集的資訊包括：</p>
+      <h1>PillTime 隱私政策</h1>
+      <p class="update">最後更新時間：2025年12月24日</p>
+      
+      <div class="highlight-box">
+        <p><strong>重要提示：</strong>我們非常重視您的隱私。PillTime 是一款本地應用，所有數據均存儲在您的設備本地，我們不會將您的個人資訊上傳到伺服器。</p>
+      </div>
+
+      <h2>1. 我們收集的資訊</h2>
+      <p>PillTime 收集的資訊包括：</p>
       <ul>
-        <li>您輸入的藥品資訊（藥品名稱、劑量、用藥時間等）</li>
-        <li>用藥記錄和提醒設置</li>
-        <li>應用使用偏好設置（如老年模式、提醒次數等）</li>
-        <li>藥品照片（可選）：用於識別藥品名稱和記錄藥品外觀</li>
+        <li><strong>藥品資訊：</strong>您輸入的藥品名稱、劑量、用藥時間等</li>
+        <li><strong>用藥記錄：</strong>您的用藥歷史和提醒設置</li>
+        <li><strong>應用設置：</strong>使用偏好設置（如老年模式、提醒次數等）</li>
+        <li><strong>藥品照片（可選）：</strong>用於識別藥品名稱和記錄藥品外觀</li>
       </ul>
       <p>所有數據均存儲在您的設備本地，我們不會將您的個人資訊上傳到伺服器。</p>
 
-      <h2>訂閱資訊</h2>
+      <h2>2. 訂閱資訊</h2>
       <ul>
         <li>訂閱功能通過 Apple App Store 處理</li>
         <li>我們不會收集、存儲或處理您的支付資訊</li>
@@ -336,7 +378,7 @@
         <li>訂閱資訊僅用於解鎖應用功能</li>
       </ul>
 
-      <h2>圖片資訊</h2>
+      <h2>3. 圖片資訊</h2>
       <ul>
         <li>掃描或拍攝的藥品照片僅用於識別藥品名稱</li>
         <li>圖片存儲在應用沙盒中，不會保存到系統相冊</li>
@@ -344,25 +386,25 @@
         <li>您可以隨時刪除藥品照片</li>
       </ul>
 
-      <h2>數據安全存儲</h2>
+      <h2>4. 數據安全存儲</h2>
       <p>您的所有數據都安全地存儲在您的設備上：</p>
       <ul>
-        <li>使用 AES-GCM 加密算法保護敏感數據</li>
-        <li>加密密鑰存儲在 iOS Keychain 中，使用設備級安全保護</li>
+        <li>所有用戶數據（藥品資訊、用藥記錄、提醒設置、應用偏好等）均使用 <strong>AES-GCM 加密算法</strong>保護</li>
+        <li>加密密鑰存儲在 <strong>iOS Keychain</strong> 中，使用設備級安全保護</li>
         <li>每次加密使用唯一的隨機數（Nonce），確保數據安全</li>
         <li>數據包含版本號和校驗和，確保數據完整性</li>
       </ul>
 
-      <h2>iCloud 備份</h2>
+      <h2>5. iCloud 備份</h2>
       <ul>
-        <li>所有用戶數據已配置排除 iCloud 備份</li>
+        <li>通過 Info.plist 配置，所有用戶數據已排除 iCloud 備份</li>
         <li>您的用藥數據不會自動備份到 iCloud</li>
         <li>這確保您的隱私數據不會被意外同步到其他設備</li>
         <li>如果您需要備份數據，請使用應用內的匯出功能</li>
       </ul>
-      <p>我們不會訪問、收集或傳輸您的任何個人健康資訊。</p>
+      <p><strong>我們不會訪問、收集或傳輸您的任何個人健康資訊。</strong></p>
 
-      <h2>數據使用目的</h2>
+      <h2>6. 數據使用目的</h2>
       <p>PillTime 使用您的數據僅用於：</p>
       <ul>
         <li>提供用藥提醒功能</li>
@@ -370,35 +412,55 @@
         <li>改善應用體驗</li>
       </ul>
 
-      <h2>數據分析</h2>
+      <h2>7. 數據分析</h2>
       <ul>
         <li>我們記錄應用使用情況以改善用戶體驗</li>
         <li>當前所有分析數據僅存儲在您的設備本地</li>
         <li>我們不會將分析數據上傳到伺服器</li>
-        <li>如果未來集成第三方分析服務，我們將更新此隱私政策並通知您</li>
+        <li>如果未來集成第三方分析服務（如 Firebase Analytics），我們將在更新應用時通過應用內通知或更新日誌告知您，並更新此隱私政策</li>
       </ul>
       <p>我們不會將您的數據用於任何其他目的，也不會與第三方分享。</p>
 
-      <h2>安全措施</h2>
+      <h2>8. 安全措施</h2>
       <p>我們採取以下措施保護您的數據安全：</p>
       <ul>
         <li>本地加密存儲（AES-GCM 算法）</li>
         <li>加密密鑰存儲在 iOS Keychain 中</li>
         <li>不進行網絡傳輸</li>
         <li>不收集用戶身份資訊</li>
-        <li>敏感數據排除 iCloud 備份</li>
+        <li>所有用戶數據排除 iCloud 備份</li>
       </ul>
 
-      <h2>權限使用</h2>
+      <h2>9. 權限使用</h2>
       <table>
-        <tr><th>權限</th><th>用途</th><th>是否必須</th></tr>
-        <tr><td>通知權限</td><td>用於發送用藥提醒，通知內容僅包含您輸入的藥品資訊</td><td>是</td></tr>
-        <tr><td>相機權限</td><td>用於掃描藥品標籤識別藥品名稱，以及拍攝藥品照片。掃描和拍攝的圖片僅存儲在應用內，不會保存到系統相冊</td><td>否</td></tr>
-        <tr><td>相冊權限</td><td>用於從相冊選擇藥品照片。我們只會讀取您主動選擇的照片，不會訪問其他照片</td><td>否</td></tr>
+        <thead>
+          <tr>
+            <th>權限</th>
+            <th>用途</th>
+            <th>是否必須</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>通知權限</strong></td>
+            <td>用於發送用藥提醒，通知內容僅包含您輸入的藥品資訊</td>
+            <td>是</td>
+          </tr>
+          <tr>
+            <td><strong>相機權限</strong></td>
+            <td>用於掃描藥品標籤識別藥品名稱，以及拍攝藥品照片。掃描和拍攝的圖片僅存儲在應用內，不會保存到系統相冊</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><strong>相冊權限</strong></td>
+            <td>讀取權限：用於從相冊選擇藥品照片。我們只會讀取您主動選擇的照片，不會訪問其他照片</td>
+            <td>否</td>
+          </tr>
+        </tbody>
       </table>
       <p>您的隱私和安全是我們的首要考慮。</p>
 
-      <h2>跨應用和跨網站追蹤</h2>
+      <h2>10. 跨應用和跨網站追蹤</h2>
       <ul>
         <li>本應用不會進行跨應用或跨網站追蹤</li>
         <li>我們不會使用 Apple 的 App Tracking Transparency (ATT) 框架請求追蹤權限</li>
@@ -406,7 +468,7 @@
         <li>應用內不顯示廣告，也不會收集數據用於廣告投放</li>
       </ul>
 
-      <h2>廣告服務</h2>
+      <h2>11. 廣告服務</h2>
       <ul>
         <li>本應用不包含任何廣告</li>
         <li>我們不會使用任何第三方廣告服務（如 AdMob、Google Mobile Ads 等）</li>
@@ -414,21 +476,21 @@
         <li>應用內不會顯示推廣內容或第三方廣告</li>
       </ul>
 
-      <h2>第三方服務</h2>
+      <h2>12. 第三方服務</h2>
       <h3>Apple StoreKit：</h3>
       <ul>
         <li>我們使用 Apple StoreKit 處理應用內購買和訂閱</li>
         <li>訂閱相關的交易資訊由 Apple 處理</li>
         <li>我們不會訪問您的 Apple ID 或支付資訊</li>
-        <li>有關 Apple 如何處理您的數據，請參閱 <a href="https://www.apple.com/privacy/" target="_blank">Apple 隱私政策</a></li>
+        <li>有關 Apple 如何處理您的數據，請參閱 <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">Apple 隱私政策</a></li>
       </ul>
       <h3>其他第三方服務：</h3>
       <ul>
         <li>當前未使用其他第三方服務</li>
-        <li>如果未來集成第三方服務，我們將更新此隱私政策並通知您</li>
+        <li>如果未來集成第三方服務，我們將在更新應用時通過應用內通知或更新日誌告知您，並更新此隱私政策</li>
       </ul>
 
-      <h2>您的權利</h2>
+      <h2>13. 您的權利</h2>
       <p>您對自己的數據擁有完全控制權：</p>
       <ul>
         <li>隨時可以刪除應用內的所有數據</li>
@@ -438,14 +500,14 @@
         <li>可以取消訂閱（通過 App Store 設置）</li>
       </ul>
 
-      <h2>數據刪除</h2>
+      <h2>14. 數據刪除</h2>
       <ul>
-        <li>刪除應用將清除所有本地存儲的數據，包括：藥品資訊、用藥記錄、提醒設置、應用偏好設置</li>
+        <li>刪除應用將清除所有本地存儲的數據，包括：藥品資訊、用藥記錄、提醒設置、應用偏好設置、加密存儲的所有數據</li>
         <li>刪除的數據無法恢復，請謹慎操作</li>
         <li>訂閱資訊由 Apple 管理，刪除應用不會影響您的訂閱狀態</li>
       </ul>
 
-      <h2>聯繫我們</h2>
+      <h2>15. 聯繫我們</h2>
       <p>如果您對隱私政策有任何疑問，請通過以下方式聯繫我們：</p>
       <ul>
         <li>應用內反饋功能</li>
@@ -453,27 +515,31 @@
       </ul>
       <p>我們會及時回復您的諮詢。</p>
 
-      <h2>法律管轄</h2>
+      <h2>16. 法律管轄</h2>
       <p>本隱私政策受中華人民共和國法律管轄。如發生爭議，雙方應友好協商解決；協商不成的，任何一方均可向有管轄權的人民法院提起訴訟。</p>
-      <p>本政策的解釋權歸 WhiteRabbitLab 所有。</p>
-      
-      <p class="update">最後更新時間：2025年12月24日</p>
+      <p>本政策的解釋權歸 <span class="company-name">WhiteRabbitLab</span> 所有。</p>
     </div>
 
     <!-- 英文版本 -->
     <div class="lang-content" id="en" style="display:none" lang="en">
-      <h1>Privacy Policy</h1>
+      <h1>PillTime Privacy Policy</h1>
       <p class="update">Last Updated: December 24, 2025</p>
-      <p>We take your privacy very seriously. PillTime is a local application, and the information we collect includes:</p>
+      
+      <div class="highlight-box">
+        <p><strong>Important Notice:</strong> We take your privacy very seriously. PillTime is a local application. All data is stored locally on your device, and we do not upload your personal information to any server.</p>
+      </div>
+
+      <h2>1. Information We Collect</h2>
+      <p>PillTime collects the following information:</p>
       <ul>
-        <li>Medication information you enter (medication name, dose, medication time, etc.)</li>
-        <li>Medication records and reminder settings</li>
-        <li>Application preference settings (such as Elder Mode, reminder count, etc.)</li>
-        <li>Medication photos (optional): Used to identify medication names and record medication appearance</li>
+        <li><strong>Medication Information:</strong> Medication names, dosages, medication times, etc. that you enter</li>
+        <li><strong>Medication Records:</strong> Your medication history and reminder settings</li>
+        <li><strong>Application Settings:</strong> Usage preferences (such as Elder Mode, reminder frequency, etc.)</li>
+        <li><strong>Medication Photos (Optional):</strong> Used to identify medication names and record medication appearance</li>
       </ul>
       <p>All data is stored locally on your device, and we do not upload your personal information to any server.</p>
 
-      <h2>Subscription Information</h2>
+      <h2>2. Subscription Information</h2>
       <ul>
         <li>Subscription features are processed through Apple App Store</li>
         <li>We do not collect, store, or process your payment information</li>
@@ -481,7 +547,7 @@
         <li>Subscription information is only used to unlock application features</li>
       </ul>
 
-      <h2>Image Information</h2>
+      <h2>3. Image Information</h2>
       <ul>
         <li>Scanned or photographed medication images are only used to identify medication names</li>
         <li>Images are stored in the application sandbox and are not saved to the system photo album</li>
@@ -489,25 +555,25 @@
         <li>You can delete medication photos at any time</li>
       </ul>
 
-      <h2>Data Security Storage</h2>
+      <h2>4. Data Security Storage</h2>
       <p>All your data is securely stored on your device:</p>
       <ul>
-        <li>Sensitive data is protected using AES-GCM encryption algorithm</li>
-        <li>Encryption keys are stored in iOS Keychain with device-level security protection</li>
+        <li>All user data (medication information, records, reminder settings, preferences, etc.) is protected using the <strong>AES-GCM encryption algorithm</strong></li>
+        <li>Encryption keys are stored in <strong>iOS Keychain</strong> with device-level security protection</li>
         <li>Each encryption uses a unique random number (Nonce) to ensure data security</li>
         <li>Data includes version numbers and checksums to ensure data integrity</li>
       </ul>
 
-      <h2>iCloud Backup</h2>
+      <h2>5. iCloud Backup</h2>
       <ul>
-        <li>All user data has been configured to exclude iCloud backup</li>
+        <li>Through Info.plist configuration, all user data is excluded from iCloud backup</li>
         <li>Your medication data will not be automatically backed up to iCloud</li>
         <li>This ensures your private data will not be accidentally synced to other devices</li>
         <li>If you need to backup data, please use the export function within the application</li>
       </ul>
-      <p>We do not access, collect, or transmit any of your personal health information.</p>
+      <p><strong>We do not access, collect, or transmit any of your personal health information.</strong></p>
 
-      <h2>Data Usage Purposes</h2>
+      <h2>6. Data Usage Purposes</h2>
       <p>PillTime uses your data only for:</p>
       <ul>
         <li>Providing medication reminder features</li>
@@ -515,35 +581,55 @@
         <li>Improving application experience</li>
       </ul>
 
-      <h2>Data Analysis</h2>
+      <h2>7. Data Analysis</h2>
       <ul>
         <li>We record application usage to improve user experience</li>
         <li>Currently, all analysis data is stored only locally on your device</li>
         <li>We do not upload analysis data to servers</li>
-        <li>If we integrate third-party analysis services in the future, we will update this privacy policy and notify you</li>
+        <li>If we integrate third-party analysis services (such as Firebase Analytics) in the future, we will notify you through in-app notifications or update logs when updating the application, and update this privacy policy</li>
       </ul>
       <p>We will not use your data for any other purpose, nor will we share it with third parties.</p>
 
-      <h2>Security Measures</h2>
+      <h2>8. Security Measures</h2>
       <p>We take the following measures to protect your data security:</p>
       <ul>
         <li>Local encrypted storage (AES-GCM algorithm)</li>
         <li>Encryption keys stored in iOS Keychain</li>
         <li>No network transmission</li>
         <li>No collection of user identity information</li>
-        <li>Sensitive data excluded from iCloud backup</li>
+        <li>All user data excluded from iCloud backup</li>
       </ul>
 
-      <h2>Permission Usage</h2>
+      <h2>9. Permission Usage</h2>
       <table>
-        <tr><th>Permission</th><th>Purpose</th><th>Required</th></tr>
-        <tr><td>Notification</td><td>Send medication reminders. Notification content only includes medication information you enter</td><td>Yes</td></tr>
-        <tr><td>Camera</td><td>Scan medication labels to identify names and take medication photos. Scanned and captured images are only stored within the app and not saved to system photo album</td><td>No</td></tr>
-        <tr><td>Photo Library</td><td>Select medication photos from library. We only read photos you actively select and do not access other photos</td><td>No</td></tr>
+        <thead>
+          <tr>
+            <th>Permission</th>
+            <th>Purpose</th>
+            <th>Required</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Notification</strong></td>
+            <td>Send medication reminders. Notification content only includes medication information you enter</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><strong>Camera</strong></td>
+            <td>Scan medication labels to identify names and take medication photos. Scanned and captured images are only stored within the app and not saved to system photo album</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td><strong>Photo Library</strong></td>
+            <td>Read permission: Select medication photos from library. We only read photos you actively select and do not access other photos</td>
+            <td>No</td>
+          </tr>
+        </tbody>
       </table>
       <p>Your privacy and security are our top priorities.</p>
 
-      <h2>Cross-App and Cross-Site Tracking</h2>
+      <h2>10. Cross-App and Cross-Site Tracking</h2>
       <ul>
         <li>This app does not perform cross-app or cross-site tracking</li>
         <li>We will not request tracking permissions using Apple's App Tracking Transparency (ATT) framework</li>
@@ -551,7 +637,7 @@
         <li>The app does not display ads and does not collect data for ad delivery</li>
       </ul>
 
-      <h2>Advertising Services</h2>
+      <h2>11. Advertising Services</h2>
       <ul>
         <li>This app does not contain any advertisements</li>
         <li>We do not use any third-party advertising services (such as AdMob, Google Mobile Ads, etc.)</li>
@@ -559,38 +645,38 @@
         <li>The app does not display promotional content or third-party advertisements</li>
       </ul>
 
-      <h2>Third-Party Services</h2>
+      <h2>12. Third-Party Services</h2>
       <h3>Apple StoreKit:</h3>
       <ul>
         <li>We use Apple StoreKit to process in-app purchases and subscriptions</li>
         <li>Subscription-related transaction information is processed by Apple</li>
         <li>We do not access your Apple ID or payment information</li>
-        <li>For how Apple handles your data, see <a href="https://www.apple.com/privacy/" target="_blank">Apple's Privacy Policy</a></li>
+        <li>For how Apple handles your data, see <a href="https://www.apple.com/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a></li>
       </ul>
       <h3>Other Third-Party Services:</h3>
       <ul>
         <li>Currently, no other third-party services are used</li>
-        <li>If we integrate third-party services in the future, we will update this policy and notify you</li>
+        <li>If we integrate third-party services in the future, we will notify you through in-app notifications or update logs when updating the application, and update this privacy policy</li>
       </ul>
 
-      <h2>Your Rights</h2>
+      <h2>13. Your Rights</h2>
       <p>You have complete control over your data:</p>
       <ul>
         <li>Delete all data within the app at any time</li>
         <li>Export your medication records (JSON format)</li>
         <li>Stop using the application at any time</li>
-       <li>Manage notification permissions in system settings</li>
+        <li>Manage notification permissions in system settings</li>
         <li>Cancel subscriptions (through App Store settings)</li>
       </ul>
 
-      <h2>Data Deletion</h2>
+      <h2>14. Data Deletion</h2>
       <ul>
-        <li>Deleting the app clears all locally stored data including: medication info, records, reminder settings, preferences</li>
+        <li>Deleting the app clears all locally stored data including: medication information, records, reminder settings, application preferences, and all encrypted data</li>
         <li>Deleted data cannot be recovered. Please proceed with caution</li>
-        <li>Subscription info is managed by Apple. Deleting the app does not affect subscription status</li>
+        <li>Subscription information is managed by Apple. Deleting the app does not affect subscription status</li>
       </ul>
 
-      <h2>Contact Us</h2>
+      <h2>15. Contact Us</h2>
       <p>If you have any questions about this privacy policy, contact us via:</p>
       <ul>
         <li>In-app feedback function</li>
@@ -598,12 +684,88 @@
       </ul>
       <p>We will respond to your inquiries promptly.</p>
 
-      <h2>Legal Jurisdiction</h2>
+      <h2>16. Legal Jurisdiction</h2>
       <p>This privacy policy is governed by the laws of the People's Republic of China. Disputes shall be resolved through friendly consultation; if consultation fails, either party may file a lawsuit with a people's court with jurisdiction.</p>
-      <p>The right to interpret this policy belongs to WhiteRabbitLab.</p>
-      
-      <p class="update">Last Updated: December 24, 2025</p>
+      <p>The right to interpret this policy belongs to <span class="company-name">WhiteRabbitLab</span>.</p>
     </div>
   </div>
+
+  <script>
+    // 语言切换功能
+    function switchLang(lang) {
+      // 隐藏所有语言内容
+      document.querySelectorAll(".lang-content").forEach(el => {
+        el.classList.remove("active");
+        setTimeout(() => {
+          el.style.display = "none";
+        }, 10);
+      });
+      
+      // 显示目标语言内容
+      const target = document.getElementById(lang);
+      if (target) {
+        target.style.display = "block";
+        // 使用requestAnimationFrame确保DOM更新后添加active类
+        requestAnimationFrame(() => {
+          target.classList.add("active");
+        });
+      }
+      
+      // 更新html的lang属性
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 
+                                     lang === 'zh-tw' ? 'zh-TW' : 'en';
+      
+      // 更新选择器值
+      document.getElementById("lang-select").value = lang;
+      
+      // 保存语言偏好到localStorage
+      try {
+        localStorage.setItem('pilltime-lang-preference', lang);
+      } catch (e) {
+        // 忽略localStorage错误
+      }
+    }
+    
+    // 自动识别浏览器语言
+    window.onload = () => {
+      const langMap = { 
+        'zh': 'zh', 
+        'zh-CN': 'zh',
+        'zh-TW': 'zh-tw',
+        'zh-HK': 'zh-tw',
+        'zh-MO': 'zh-tw',
+        'zh-SG': 'zh',
+        'en': 'en',
+        'en-US': 'en',
+        'en-GB': 'en'
+      };
+      
+      // 优先使用保存的偏好
+      let preferredLang;
+      try {
+        preferredLang = localStorage.getItem('pilltime-lang-preference');
+      } catch (e) {
+        // 忽略localStorage错误
+      }
+      
+      if (preferredLang && ['zh', 'zh-tw', 'en'].includes(preferredLang)) {
+        switchLang(preferredLang);
+      } else {
+        // 根据浏览器语言选择
+        const browserLang = (navigator.language || 'en').toLowerCase();
+        const defaultLang = langMap[browserLang] || 'zh';
+        switchLang(defaultLang);
+      }
+    };
+    
+    // 确保在加载时内容可见
+    document.addEventListener('DOMContentLoaded', function() {
+      // 如果没有任何语言内容显示，默认显示简体中文
+      const visibleContents = document.querySelectorAll('.lang-content[style*="block"]');
+      if (visibleContents.length === 0) {
+        switchLang('zh');
+      }
+    });
+  </script>
 </body>
 </html>
