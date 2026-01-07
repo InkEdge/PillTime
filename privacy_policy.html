@@ -133,6 +133,10 @@
       opacity: 1; 
       display: block; 
     }
+    .lang-content.default { 
+      display: block !important; 
+      opacity: 1 !important; 
+    }
 
     .highlight-box {
       background-color: #f0f7ff;
@@ -168,6 +172,7 @@
       body { background-color: white; }
       .container { box-shadow: none; margin: 0; padding: 20px; }
       a { color: #000; }
+      .lang-content { opacity: 1 !important; display: block !important; }
     }
   </style>
 </head>
@@ -182,8 +187,8 @@
   </div>
 
   <div class="container">
-    <!-- 简体中文版本 -->
-    <div class="lang-content" id="zh" style="display:none" lang="zh-CN">
+    <!-- 简体中文版本 - 默认显示 -->
+    <div class="lang-content default" id="zh" lang="zh-CN">
       <h1>PillTime 隐私政策</h1>
       <p class="update">最后更新时间：2025年12月24日</p>
       
@@ -693,22 +698,20 @@
   <script>
     // 语言切换功能
     function switchLang(lang) {
-      // 隐藏所有语言内容
+      // 隐藏所有语言内容并移除默认类
       document.querySelectorAll(".lang-content").forEach(el => {
-        el.classList.remove("active");
-        setTimeout(() => {
-          el.style.display = "none";
-        }, 10);
+        el.style.display = "none";
+        el.classList.remove("active", "default");
       });
       
       // 显示目标语言内容
       const target = document.getElementById(lang);
       if (target) {
         target.style.display = "block";
-        // 使用requestAnimationFrame确保DOM更新后添加active类
-        requestAnimationFrame(() => {
+        // 使用setTimeout确保DOM更新后添加active类
+        setTimeout(() => {
           target.classList.add("active");
-        });
+        }, 20);
       }
       
       // 更新html的lang属性
@@ -727,44 +730,44 @@
     }
     
     // 自动识别浏览器语言
-    window.onload = () => {
-      const langMap = { 
-        'zh': 'zh', 
-        'zh-CN': 'zh',
-        'zh-TW': 'zh-tw',
-        'zh-HK': 'zh-tw',
-        'zh-MO': 'zh-tw',
-        'zh-SG': 'zh',
-        'en': 'en',
-        'en-US': 'en',
-        'en-GB': 'en'
-      };
-      
+    window.addEventListener('load', function() {
       // 优先使用保存的偏好
       let preferredLang;
       try {
         preferredLang = localStorage.getItem('pilltime-lang-preference');
       } catch (e) {
-        // 忽略localStorage错误
+        preferredLang = null;
       }
       
       if (preferredLang && ['zh', 'zh-tw', 'en'].includes(preferredLang)) {
         switchLang(preferredLang);
-      } else {
-        // 根据浏览器语言选择
-        const browserLang = (navigator.language || 'en').toLowerCase();
-        const defaultLang = langMap[browserLang] || 'zh';
+        return;
+      }
+      
+      // 根据浏览器语言选择
+      const browserLang = (navigator.language || navigator.userLanguage || 'zh-CN').toLowerCase();
+      
+      let defaultLang = 'zh'; // 默认简体中文
+      
+      if (browserLang.includes('zh-tw') || browserLang.includes('zh-hk') || browserLang.includes('zh-mo')) {
+        defaultLang = 'zh-tw';
+      } else if (browserLang.includes('en')) {
+        defaultLang = 'en';
+      }
+      
+      // 如果当前显示的不是目标语言，则切换
+      const currentLang = document.getElementById('lang-select').value;
+      if (currentLang !== defaultLang) {
         switchLang(defaultLang);
       }
-    };
+    });
     
-    // 确保在加载时内容可见
-    document.addEventListener('DOMContentLoaded', function() {
-      // 如果没有任何语言内容显示，默认显示简体中文
-      const visibleContents = document.querySelectorAll('.lang-content[style*="block"]');
-      if (visibleContents.length === 0) {
-        switchLang('zh');
-      }
+    // 确保在打印时所有内容可见
+    window.addEventListener('beforeprint', function() {
+      document.querySelectorAll('.lang-content').forEach(el => {
+        el.style.display = 'block';
+        el.style.opacity = '1';
+      });
     });
   </script>
 </body>
