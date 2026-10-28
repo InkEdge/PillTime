@@ -2,8 +2,9 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="PillTime 服务条款 - 了解 PillTime 应用的使用条款、订阅规则、免责声明与联系方式。" />
+  <meta name="theme-color" content="#3c71c1" />
   <title>服务条款 - Terms of Service | PillTime</title>
   <style>
     :root {
@@ -11,86 +12,109 @@
       --brand-dark: #2f5ea3;
       --bg: #f4f7fb;
       --card: #ffffff;
-      --text: #222;
+      --text: #1f2937;
       --muted: #6b7280;
       --border: #e0e6f1;
       --soft: #f3f6fb;
       --warning-bg: #fff8e6;
       --warning-border: #f0c36d;
+      --radius: 14px;
     }
 
     * { box-sizing: border-box; }
 
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
       background-color: var(--bg);
       margin: 0;
       padding: 0;
-      line-height: 1.7;
+      line-height: 1.75;
       color: var(--text);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
+    /* language selector */
     .lang-selector {
-      text-align: center;
-      padding: 16px;
-      background-color: rgba(255, 255, 255, 0.96);
-      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 8px rgba(60,113,193,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.92);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(60,113,193,0.07);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .lang-selector label {
-      margin-right: 10px;
       font-weight: 600;
       color: #374151;
+      font-size: 15px;
+      white-space: nowrap;
     }
 
     .lang-selector select {
       font-size: 16px;
-      padding: 8px 12px;
-      border-radius: 8px;
+      padding: 8px 34px 8px 12px;
+      border-radius: 10px;
       border: 1px solid #cfd7e6;
       background-color: #fff;
       font-weight: 500;
       color: #1f2937;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color .2s, box-shadow .2s;
+      -webkit-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      cursor: pointer;
+      min-width: 160px;
     }
 
-    .lang-selector select:focus {
-      border-color: var(--brand);
+    .lang-selector select:focus-visible {
       outline: none;
-      box-shadow: 0 0 0 3px rgba(60,113,193,0.14);
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(60,113,193,0.16);
     }
 
+    /* container */
     .container {
       max-width: 860px;
-      margin: 24px auto 40px;
-      padding: 32px 24px;
+      margin: 26px auto 48px;
+      padding: 34px 28px;
       background-color: var(--card);
-      box-shadow: 0 4px 24px rgba(60,113,193,0.08);
-      border-radius: 18px;
+      box-shadow: 0 8px 30px rgba(60,113,193,0.08);
+      border-radius: 20px;
     }
 
+    /* hero */
     .hero {
-      padding-bottom: 18px;
+      padding-bottom: 20px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     h1 {
       font-size: 28px;
-      margin: 0 0 8px 0;
+      margin: 0 0 8px;
       color: var(--brand);
       line-height: 1.3;
       font-weight: 750;
-      letter-spacing: .3px;
+      letter-spacing: .2px;
     }
 
     .subtitle {
-      margin: 0 0 8px 0;
+      margin: 0 0 8px;
       color: #374151;
       font-size: 16px;
     }
@@ -102,7 +126,7 @@
     }
 
     h2 {
-      margin-top: 30px;
+      margin-top: 32px;
       margin-bottom: 10px;
       font-size: 20px;
       color: var(--brand);
@@ -131,32 +155,42 @@
 
     li { margin-bottom: 8px; }
     strong { color: var(--brand-dark); }
-    a { color: var(--brand); text-decoration: underline; word-break: break-all; }
+    a { color: var(--brand); text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
+    a:hover { color: var(--brand-dark); }
 
+    /* notices */
     .notice {
       background: var(--warning-bg);
       border: 1px solid var(--warning-border);
-      border-radius: 12px;
-      padding: 14px 16px;
+      border-radius: var(--radius);
+      padding: 16px 18px;
       margin: 18px 0;
     }
 
+    .notice ul { margin-top: 0; }
     .notice p:last-child,
     .notice ul:last-child { margin-bottom: 0; }
+
+    /* tables */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 12px 0 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 12px 0 18px 0;
       background: #fafbfc;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      min-width: 480px;
     }
 
     th, td {
       border: 1px solid var(--border);
-      padding: 10px 12px;
+      padding: 10px 13px;
       text-align: left;
       vertical-align: top;
       font-size: 15px;
@@ -169,48 +203,56 @@
     }
 
     .footer-note {
-      margin-top: 28px;
+      margin-top: 30px;
       padding-top: 18px;
       border-top: 1px solid var(--border);
       color: var(--muted);
       font-size: 14px;
     }
 
-    .lang-content {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.22s ease;
+    .footer-note p { font-size: 14px; margin-bottom: 10px; }
+
+    /* language sections */
+    .lang-content { display: none; }
+    .lang-content.active { display: block; animation: fadeIn .25s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    .lang-content.active {
-      display: block;
-      opacity: 1;
-    }
-
+    /* responsive */
     @media (max-width: 560px) {
+      .lang-selector {
+        flex-direction: column;
+        gap: 6px;
+        padding: 10px 14px;
+      }
+      .lang-selector label { font-size: 14px; }
+      .lang-selector select { width: 100%; max-width: 320px; }
+
       .container {
         margin: 0 auto;
         border-radius: 0;
-        padding: 22px 16px;
+        padding: 22px 18px;
         box-shadow: none;
       }
-
-      .lang-selector { padding: 12px; }
-      .lang-selector label { display: block; margin: 0 0 8px 0; }
-      .lang-selector select { width: 100%; max-width: 300px; }
 
       h1 { font-size: 24px; }
       h2 { font-size: 19px; }
       h3 { font-size: 17px; }
       p, li, th, td { font-size: 15px; }
-      table { display: block; overflow-x: auto; white-space: nowrap; }
+
+      .hero { padding-bottom: 16px; }
     }
 
     @media print {
       .lang-selector { display: none; }
-      body { background-color: white; }
-      .container { box-shadow: none; margin: 0; padding: 20px; max-width: none; }
+      body { background-color: #fff; }
+      .container { box-shadow: none; margin: 0; padding: 20px; max-width: none; border-radius: 0; }
       a { color: #000; }
+      .lang-content { display: none !important; }
+      .lang-content.active { display: block !important; }
     }
   </style>
 </head>
@@ -225,12 +267,12 @@
   </div>
 
   <div class="container">
-    <!-- 简体中文版本 -->
+    <!-- ===================== 简体中文 ===================== -->
     <section class="lang-content" id="zh" lang="zh-CN">
       <div class="hero">
         <h1>服务条款</h1>
         <p class="subtitle">欢迎使用 PillTime 应用。使用本应用即表示您同意遵守以下条款和条件。</p>
-        <p class="update">最后更新时间：2025年12月12日</p>
+        <p class="update">最后更新时间：2026年10月28日</p>
       </div>
 
       <h2>1. 服务说明</h2>
@@ -241,7 +283,7 @@
         <li><strong>药品扫描：</strong>使用相机扫描药品包装，智能识别药品名称，支持简体中文、繁体中文、英文。</li>
         <li><strong>药品管理：</strong>添加、编辑、删除药品信息，支持自定义剂量、单位、备注。</li>
         <li><strong>完成率统计：</strong>查看今日、本周、本月的服药完成率，并以直观的环形进度图展示。</li>
-        <li><strong>主屏幕 Widget：</strong>在主屏幕快速查看今日用药提醒，一键完成用药记录。</li>
+        <li><strong>主屏幕小组件：</strong>在主屏幕快速查看今日用药提醒，一键完成用药记录。</li>
         <li><strong>数据导出：</strong>导出用药记录数据，格式为 JSON，便于备份和数据分析。该功能属于订阅功能。</li>
       </ul>
 
@@ -250,18 +292,24 @@
       <ul>
         <li><strong>订阅内容：</strong>包括无限制药品管理、数据导出等高级功能。</li>
         <li><strong>订阅方式：</strong>订阅服务通过 App Store 进行，遵循 Apple 的订阅条款和隐私政策。</li>
-        <li><strong>订阅管理：</strong>您可以在应用内或 App Store 设置中管理或取消订阅。</li>
-        <li><strong>免费体验期：</strong>部分订阅计划可能提供免费试用期，具体以 App Store 显示为准。</li>
+        <li><strong>订阅管理：</strong>您可以在 Apple 账户订阅设置中管理或取消订阅。</li>
+        <li><strong>免费试用期：</strong>部分订阅计划可能提供免费试用期，具体以 App Store 显示为准。</li>
       </ul>
 
       <h3>订阅选项</h3>
       <p>具体订阅项目、价格、试用期和购买条件以 App Store 实际展示与购买页为准。</p>
-      <table>
-        <tr><th>订阅或权益类型</th><th>说明</th><th>续订或有效期</th></tr>
-        <tr><td>周订阅</td><td>按周付费，获得高级功能权益。</td><td>自动续订，除非您在当前计费周期结束前至少 24 小时在 App Store 中取消。</td></tr>
-        <tr><td>年订阅</td><td>按年付费，获得高级功能权益。</td><td>自动续订，除非您在订阅到期前至少 24 小时取消。</td></tr>
-        <tr><td>终身会员</td><td>若您曾购买“终身会员”，该权益为当时的一次性购买权益。</td><td>持续有效；新用户是否提供该选项以应用内与 App Store 展示为准。</td></tr>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>订阅或权益类型</th><th>说明</th><th>续订或有效期</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>周订阅</td><td>按周付费，获得高级功能权益。</td><td>自动续订，除非您在当前计费周期结束前至少 24 小时取消。</td></tr>
+            <tr><td>年订阅</td><td>按年付费，获得高级功能权益。</td><td>自动续订，除非您在订阅到期前至少 24 小时取消。</td></tr>
+            <tr><td>终身会员（旧版）</td><td>若您曾购买“终身会员”，该权益为当时的一次性购买权益。</td><td>持续有效；新用户是否提供该选项以应用内与 App Store 展示为准。</td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <ul>
         <li><strong>价格信息：</strong>订阅价格会在购买时明确显示，我们保留根据市场情况调整价格的权利。</li>
@@ -326,8 +374,8 @@
       <ul>
         <li><strong>数据准确性：</strong>应用提供的数据分析仅供参考，不构成任何形式的建议或保证。</li>
         <li><strong>损失责任：</strong>因使用本应用产生的任何直接或间接损失，我们不承担责任。</li>
-        <li><strong>第三方服务：</strong>应用可能使用第三方服务，如 App Store，我们对第三方服务的行为不承担责任。</li>
-        <li><strong>不可抗力：</strong>因不可抗力，如自然灾害、战争、网络攻击等导致的服务中断，我们不承担责任。</li>
+        <li><strong>第三方服务：</strong>应用可能使用第三方服务（如 App Store），我们对第三方服务的行为不承担责任。</li>
+        <li><strong>不可抗力：</strong>因不可抗力（如自然灾害、战争、网络攻击等）导致的服务中断，我们不承担责任。</li>
         <li><strong>用户行为：</strong>因用户违规使用应用导致的任何后果，由用户自行承担。</li>
       </ul>
 
@@ -380,12 +428,12 @@
       </div>
     </section>
 
-    <!-- 繁體中文版本 -->
+    <!-- ===================== 繁體中文 ===================== -->
     <section class="lang-content" id="zh-tw" lang="zh-TW">
       <div class="hero">
         <h1>服務條款</h1>
         <p class="subtitle">歡迎使用 PillTime 應用。使用本應用即表示您同意遵守以下條款和條件。</p>
-        <p class="update">最後更新時間：2025年12月12日</p>
+        <p class="update">最後更新時間：2026年10月28日</p>
       </div>
 
       <h2>1. 服務說明</h2>
@@ -396,7 +444,7 @@
         <li><strong>藥品掃描：</strong>使用相機掃描藥品包裝，智慧識別藥品名稱，支援簡體中文、繁體中文、英文。</li>
         <li><strong>藥品管理：</strong>新增、編輯、刪除藥品資訊，支援自訂劑量、單位、備註。</li>
         <li><strong>完成率統計：</strong>查看今日、本週、本月的服藥完成率，並以直觀的環形進度圖展示。</li>
-        <li><strong>主畫面 Widget：</strong>在主畫面快速查看今日用藥提醒，一鍵完成用藥記錄。</li>
+        <li><strong>主畫面小工具：</strong>在主畫面快速查看今日用藥提醒，一鍵完成用藥記錄。</li>
         <li><strong>資料匯出：</strong>匯出用藥記錄資料，格式為 JSON，便於備份和資料分析。該功能屬於訂閱功能。</li>
       </ul>
 
@@ -405,18 +453,24 @@
       <ul>
         <li><strong>訂閱內容：</strong>包括無限制藥品管理、資料匯出等高級功能。</li>
         <li><strong>訂閱方式：</strong>訂閱服務通過 App Store 進行，遵循 Apple 的訂閱條款和隱私政策。</li>
-        <li><strong>訂閱管理：</strong>您可以在應用內或 App Store 設定中管理或取消訂閱。</li>
+        <li><strong>訂閱管理：</strong>您可以在 Apple 帳戶訂閱設定中管理或取消訂閱。</li>
         <li><strong>免費體驗期：</strong>部分訂閱計劃可能提供免費試用期，具體以 App Store 顯示為準。</li>
       </ul>
 
       <h3>訂閱選項</h3>
       <p>具體訂閱項目、價格、試用期和購買條件以 App Store 實際展示與購買頁為準。</p>
-      <table>
-        <tr><th>訂閱或權益類型</th><th>說明</th><th>續訂或有效期</th></tr>
-        <tr><td>週訂閱</td><td>按週付費，獲得高級功能權益。</td><td>自動續訂，除非您在目前計費週期結束前至少 24 小時在 App Store 中取消。</td></tr>
-        <tr><td>年訂閱</td><td>按年付費，獲得高級功能權益。</td><td>自動續訂，除非您在訂閱到期前至少 24 小時取消。</td></tr>
-        <tr><td>終身會員</td><td>若您曾購買「終身會員」，該權益為當時的一次性購買權益。</td><td>持續有效；新用戶是否提供該選項以應用內與 App Store 展示為準。</td></tr>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>訂閱或權益類型</th><th>說明</th><th>續訂或有效期</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>週訂閱</td><td>按週付費，獲得高級功能權益。</td><td>自動續訂，除非您在目前計費週期結束前至少 24 小時取消。</td></tr>
+            <tr><td>年訂閱</td><td>按年付費，獲得高級功能權益。</td><td>自動續訂，除非您在訂閱到期前至少 24 小時取消。</td></tr>
+            <tr><td>終身會員（舊版）</td><td>若您曾購買「終身會員」，該權益為當時的一次性購買權益。</td><td>持續有效；新用戶是否提供該選項以應用內與 App Store 展示為準。</td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <ul>
         <li><strong>價格資訊：</strong>訂閱價格會在購買時明確顯示，我們保留根據市場情況調整價格的權利。</li>
@@ -481,8 +535,8 @@
       <ul>
         <li><strong>資料準確性：</strong>應用提供的資料分析僅供參考，不構成任何形式的建議或保證。</li>
         <li><strong>損失責任：</strong>因使用本應用產生的任何直接或間接損失，我們不承擔責任。</li>
-        <li><strong>第三方服務：</strong>應用可能使用第三方服務，如 App Store，我們對第三方服務的行為不承擔責任。</li>
-        <li><strong>不可抗力：</strong>因不可抗力，如自然災害、戰爭、網絡攻擊等導致的服務中斷，我們不承擔責任。</li>
+        <li><strong>第三方服務：</strong>應用可能使用第三方服務（如 App Store），我們對第三方服務的行為不承擔責任。</li>
+        <li><strong>不可抗力：</strong>因不可抗力（如自然災害、戰爭、網絡攻擊等）導致的服務中斷，我們不承擔責任。</li>
         <li><strong>用戶行為：</strong>因用戶違規使用應用導致的任何後果，由用戶自行承擔。</li>
       </ul>
 
@@ -535,199 +589,31 @@
       </div>
     </section>
 
-    <!-- English version -->
+    <!-- ===================== English ===================== -->
     <section class="lang-content" id="en" lang="en">
       <div class="hero">
         <h1>Terms of Service</h1>
-        <p class="subtitle">Welcome to the PillTime app. By using this app, you agree to comply with the following terms and conditions.</p>
-        <p class="update">Last Updated: December 12, 2025</p>
+        <p class="subtitle">Welcome to the PillTime application. By using this application, you agree to comply with the following terms and conditions.</p>
+        <p class="update">Last Updated: October 28, 2026</p>
       </div>
 
       <h2>1. Service Description</h2>
-      <p>This app is a medication management tool that provides the following features:</p>
+      <p>This application is a medication management tool that provides the following features:</p>
       <ul>
-        <li><strong>Medication reminders:</strong> Set scheduled reminders with multiple frequency modes, including daily, interval-based, and multiple times per day.</li>
-        <li><strong>Medication records:</strong> Record each medication event, including completed, missed, and postponed statuses.</li>
-        <li><strong>Medication scanning:</strong> Use the camera to scan medication packaging and intelligently recognize medication names. Simplified Chinese, Traditional Chinese, and English are supported.</li>
-        <li><strong>Medication management:</strong> Add, edit, and delete medication information, including custom dosage, units, and notes.</li>
-        <li><strong>Completion statistics:</strong> View completion rates for today, this week, and this month in an intuitive circular progress chart.</li>
-        <li><strong>Home Screen Widget:</strong> Quickly view today's medication reminders on the Home Screen and complete medication records with one tap.</li>
-        <li><strong>Data export:</strong> Export medication record data in JSON format for backup and data analysis. This is a subscription feature.</li>
+        <li><strong>Medication Reminders:</strong> Set scheduled reminders with multiple frequency modes, including daily, interval, and multi-time slots.</li>
+        <li><strong>Medication Tracking:</strong> Record each medication dose, including completed, missed, and postponed statuses.</li>
+        <li><strong>Medication Scanning:</strong> Use your camera to scan medication packaging and intelligently recognize medication names (supports Simplified Chinese, Traditional Chinese, and English).</li>
+        <li><strong>Medication Management:</strong> Add, edit, and delete medication information with support for custom dosage, units, and notes.</li>
+        <li><strong>Completion Rate Statistics:</strong> View today's, this week's, and this month's medication completion rates in an intuitive circular progress chart.</li>
+        <li><strong>Home Screen Widget:</strong> Quickly view today's medication reminders on your Home Screen and complete medication records with one tap.</li>
+        <li><strong>Data Export:</strong> Export medication record data in JSON format for backup and data analysis (Premium feature).</li>
       </ul>
 
       <h2>2. Subscription Service</h2>
-      <p>The app provides subscription services for premium features:</p>
+      <p>The application provides premium feature subscription services:</p>
       <ul>
-        <li><strong>Subscription content:</strong> Premium features include unlimited medication management, data export, and other advanced functions.</li>
-        <li><strong>Subscription method:</strong> Subscriptions are processed through the App Store and are subject to Apple's subscription terms and privacy policy.</li>
-        <li><strong>Subscription management:</strong> You may manage or cancel your subscription in the app or in App Store settings.</li>
-        <li><strong>Free trial:</strong> Some subscription plans may offer a free trial. The actual availability is subject to what is displayed in the App Store.</li>
-      </ul>
-
-      <h3>Subscription Options</h3>
-      <p>Actual subscription items, prices, trial periods, and purchase conditions are subject to the App Store listing and purchase page.</p>
-      <table>
-        <tr><th>Type</th><th>Description</th><th>Renewal or Validity</th></tr>
-        <tr><td>Weekly subscription</td><td>Paid weekly, with access to premium features.</td><td>Automatically renews unless canceled in the App Store at least 24 hours before the end of the current billing period.</td></tr>
-        <tr><td>Annual subscription</td><td>Paid annually, with access to premium features.</td><td>Automatically renews unless canceled at least 24 hours before the subscription expires.</td></tr>
-        <tr><td>Lifetime membership</td><td>If you previously purchased “Lifetime Membership,” it is a one-time purchase right from that time.</td><td>Remains valid. Whether this option is available to new users is subject to what is displayed in the app and the App Store.</td></tr>
-      </table>
-
-      <ul>
-        <li><strong>Price information:</strong> Subscription prices will be clearly displayed at the time of purchase. We reserve the right to adjust prices based on market conditions.</li>
-        <li><strong>Refund policy:</strong> Subscription services follow the App Store refund policy.</li>
-      </ul>
-
-      <h2>3. Usage Rules</h2>
-      <p>When using this app, users must comply with the following rules:</p>
-      <ul>
-        <li><strong>Lawful use:</strong> Users must use the app reasonably and must not use it for illegal or improper purposes.</li>
-        <li><strong>Prohibited conduct:</strong>
-          <ul>
-            <li>Do not use the app for any illegal activity.</li>
-            <li>Do not interfere with or disrupt the normal operation of the app.</li>
-            <li>Do not maliciously attack or tamper with app data.</li>
-            <li>Do not use the app for commercial purposes unless expressly authorized.</li>
-          </ul>
-        </li>
-        <li><strong>Data accuracy:</strong> Users should ensure that the medication information they enter is true and accurate.</li>
-        <li><strong>Appropriate use:</strong> Users should use appropriate language in the app and must not post improper content.</li>
-      </ul>
-      <p>Violation of the above terms may result in termination of your right to use the app.</p>
-
-      <h2>4. Service Availability</h2>
-      <ul>
-        <li><strong>Service stability:</strong> We strive to maintain stable service, but we do not guarantee 100% availability.</li>
-        <li><strong>Service interruptions:</strong> Services may be temporarily interrupted due to technical maintenance, system upgrades, force majeure, or similar reasons.</li>
-        <li><strong>Data backup:</strong> Users are advised to regularly back up important data. We are not responsible for data loss caused by service interruptions.</li>
-        <li><strong>Compatibility:</strong> We strive to ensure compatibility with the latest versions of iOS, but we do not guarantee compatibility with all devices or system versions.</li>
-      </ul>
-
-      <h2>5. Feature Changes</h2>
-      <ul>
-        <li><strong>Feature optimization:</strong> We may optimize and update app features based on user feedback and technological development.</li>
-        <li><strong>Feature adjustments:</strong> We reserve the right to modify, suspend, or terminate certain features when necessary.</li>
-        <li><strong>New features:</strong> We may add new features, which may be free for subscribers or may require additional payment.</li>
-        <li><strong>Feature removal:</strong> Certain features may be removed or replaced, and we will notify users in advance whenever possible.</li>
-        <li><strong>Version updates:</strong> The app may be updated regularly, and updated versions may include new features or bug fixes.</li>
-      </ul>
-
-      <h2>6. Important Notice</h2>
-      <div class="notice">
-        <ul>
-          <li>This app is only a medication reminder tool and does not provide medical advice.</li>
-          <li>This app cannot replace professional medical consultation.</li>
-          <li>You should consult a doctor or pharmacist regarding any medication-related questions.</li>
-          <li>We are not responsible for any medical consequences arising from the use of this app.</li>
-        </ul>
-        <p>Please always follow the advice of doctors or medical professionals.</p>
-      </div>
-
-      <h2>7. About Your Data</h2>
-      <ul>
-        <li>You are responsible for all data entered into the app.</li>
-        <li>We recommend that you regularly back up important data.</li>
-        <li>We are not responsible for losses caused by device loss, device damage, or data loss.</li>
-        <li>Deleting the app will clear all locally stored data.</li>
-      </ul>
-      <p>Please keep your device and data secure.</p>
-
-      <h2>8. Disclaimer</h2>
-      <ul>
-        <li><strong>Data accuracy:</strong> Data analysis provided by the app is for reference only and does not constitute any form of advice or guarantee.</li>
-        <li><strong>Liability for losses:</strong> We are not responsible for any direct or indirect losses arising from the use of this app.</li>
-        <li><strong>Third-party services:</strong> The app may use third-party services, such as the App Store, and we are not responsible for the actions of third-party services.</li>
-        <li><strong>Force majeure:</strong> We are not responsible for service interruptions caused by force majeure, such as natural disasters, wars, cyberattacks, or similar events.</li>
-        <li><strong>User behavior:</strong> Users are responsible for any consequences caused by their violation of these terms or improper use of the app.</li>
-      </ul>
-
-      <h2>9. Intellectual Property</h2>
-      <ul>
-        <li><strong>Copyright protection:</strong> All app content, including but not limited to text, images, icons, interface design, and code, is protected by copyright.</li>
-        <li><strong>Usage restrictions:</strong> Without authorization, users may not copy, modify, distribute, or commercially use app content.</li>
-        <li><strong>User content:</strong> Medication data entered by users belongs to the users, but we have the right to use such data within the app to provide services.</li>
-        <li><strong>Trademark protection:</strong> The app name, logos, and other marks are protected by law and may not be used without authorization.</li>
-        <li><strong>Technical protection:</strong> Users may not reverse engineer, decompile, or otherwise technically crack the app.</li>
-      </ul>
-      <p>We reserve all rights not expressly granted.</p>
-
-      <h2>10. Agreement Updates</h2>
-      <ul>
-        <li><strong>Update notice:</strong> This agreement may be updated. In the event of material changes, we will notify users through in-app notices or other means.</li>
-        <li><strong>Effective time:</strong> The updated agreement takes effect immediately upon publication.</li>
-        <li><strong>Continued use:</strong> Continued use of the app indicates that you agree to the updated agreement.</li>
-        <li><strong>If you disagree:</strong> If you do not agree to the updated agreement, you should stop using the app and cancel your subscription.</li>
-        <li><strong>Historical versions:</strong> You may view the current version of the Terms of Service in the app.</li>
-      </ul>
-      <p>We recommend that you review this agreement regularly to stay informed of the latest terms.</p>
-
-      <h2>11. Dispute Resolution</h2>
-      <ul>
-        <li><strong>Negotiation:</strong> In the event of a dispute, friendly negotiation should be attempted first.</li>
-        <li><strong>Applicable law:</strong> This agreement is governed by the laws of the People's Republic of China.</li>
-        <li><strong>Jurisdiction:</strong> If negotiation fails, the dispute shall be submitted to the people's court with jurisdiction at the location of the app developer.</li>
-        <li><strong>Complaint channels:</strong> You may contact us through the in-app feedback function or by email at <a href="mailto:chenyisy@gmail.com">chenyisy@gmail.com</a>.</li>
-        <li><strong>Response time:</strong> We will respond to your inquiries or complaints within 3 business days.</li>
-      </ul>
-
-      <h2>12. Contact Us</h2>
-      <p>If you have any questions, suggestions, or complaints about these Terms of Service, please contact us through the following methods:</p>
-      <ul>
-        <li><strong>Email:</strong> <a href="mailto:chenyisy@gmail.com">chenyisy@gmail.com</a></li>
-        <li><strong>In-app feedback:</strong> Through the in-app feedback function.</li>
-        <li><strong>Response time:</strong> We will respond to your inquiry within 3 business days.</li>
-        <li><strong>Complaint handling:</strong> We will carefully handle your complaints and suggestions.</li>
-        <li><strong>Continuous improvement:</strong> Your feedback helps us continuously improve service quality.</li>
-      </ul>
-
-      <h2>Important Statement</h2>
-      <p>By using this app, you agree to all contents of these Terms of Service. If you do not agree to any part of these terms, please stop using the app.</p>
-      <p>These Terms of Service may be updated. Please review them regularly. Continued use of the app indicates that you agree to the updated terms.</p>
-
-      <div class="footer-note">
-        <p>This user agreement is governed by the laws of the People's Republic of China. In case of dispute, both parties shall first resolve the matter through friendly negotiation. If negotiation fails, either party may file a lawsuit with a people's court with jurisdiction.</p>
-        <p>The right to interpret this agreement belongs to WhiteRabbitLab.</p>
-      </div>
-    </section>
-  </div>
-
-  <script>
-    function switchLang(lang) {
-      document.querySelectorAll(".lang-content").forEach(el => {
-        el.classList.remove("active");
-        el.style.display = "none";
-      });
-
-      const target = document.getElementById(lang);
-      if (target) {
-        target.style.display = "block";
-        requestAnimationFrame(() => target.classList.add("active"));
-      }
-
-      document.documentElement.lang = lang === "zh" ? "zh-CN" : (lang === "zh-tw" ? "zh-TW" : "en");
-      const select = document.getElementById("lang-select");
-      if (select) select.value = lang;
-
-      try {
-        localStorage.setItem("pilltime_terms_lang", lang);
-      } catch (e) {}
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-      let savedLang = null;
-      try {
-        savedLang = localStorage.getItem("pilltime_terms_lang");
-      } catch (e) {}
-
-      const browserLang = (navigator.language || "zh-CN").toLowerCase();
-      const defaultLang = browserLang.startsWith("zh-tw") || browserLang.startsWith("zh-hk") || browserLang.startsWith("zh-mo")
-        ? "zh-tw"
-        : browserLang.startsWith("en")
-          ? "en"
-          : "zh";
-
-      switchLang(savedLang || defaultLang);
-    });
-  </script>
-</body>
-</html>
+        <li><strong>Subscription Content:</strong> Includes unlimited medication management, data export, and other premium features.</li>
+        <li><strong>Subscription Method:</strong> Subscriptions are processed through the App Store, following Apple's subscription terms and privacy policy.</li>
+        <li><strong>Subscription Management:</strong> You can manage or cancel your subscription in your Apple Account subscription settings.</li>
+        <li><strong>Free Trial Period:</strong> Some subscription plans may offer a free trial period, as shown in the App Store.</li>
+     
